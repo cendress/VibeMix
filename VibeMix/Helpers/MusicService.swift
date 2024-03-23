@@ -14,30 +14,22 @@ class MusicService {
   
   private init() {}
   
-  func checkMusicAuthorization(completion: @escaping (Bool, String?) -> Void) {
+  func requestMusicAuthorization(completion: @escaping (Bool) -> Void) {
     SKCloudServiceController.requestAuthorization { status in
       DispatchQueue.main.async {
         switch status {
         case .authorized:
-          SKCloudServiceController().requestUserToken(forDeveloperToken: TokenProvider.developerToken) { userToken, error in
-            DispatchQueue.main.async {
-              if let userToken = userToken, error == nil {
-                completion(true, userToken)
-              } else {
-                completion(false, nil)
-              }
-            }
-          }
+          completion(true)
         default:
-          completion(false, nil)
+          completion(false)
         }
       }
     }
   }
   
-  func fetchSongs(forMood mood: MoodOption, completion: @escaping (Result<[MusicKit.Song], Error>) -> Void) {
-    checkMusicAuthorization { authorized, userToken in
-      guard authorized, let userToken = userToken else {
+  func fetchSongs(forMood mood: MoodOption, completion: @escaping (Result<[Song], Error>) -> Void) {
+    requestMusicAuthorization { authorized in
+      guard authorized else {
         completion(.failure(NSError(domain: "MusicService", code: 0, userInfo: [NSLocalizedDescriptionKey: "Not authorized to access music library"])))
         return
       }
@@ -46,11 +38,14 @@ class MusicService {
       
       Task {
         do {
-          var request = MusicCatalogSearchRequest(term: searchQuery, types: [MusicKit.Song.self])
+          var request = MusicCatalogSearchRequest(term: searchQuery, types: [Song.self])
           request.limit = 10
+          
           let response = try await request.response()
           
-          completion(.success(response.songs.compactMap { $0 }))
+          let songsArray = Array(response.songs)
+          
+          completion(.success(songsArray))
         } catch {
           completion(.failure(error))
         }
