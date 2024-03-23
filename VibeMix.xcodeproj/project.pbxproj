@@ -99,6 +99,7 @@
 				9DC98F5E2BAF32C8006FA21F /* MusicService.swift */,
 				9DC98F602BAF4BC2006FA21F /* TokenProvider.swift */,
 				9DC98F472BAF0584006FA21F /* Persistence.swift */,
+				9DC98F692BAF57F7006FA21F /* OnboardingView.swift */,
 				9DC98F6B2BAF5967006FA21F /* UIOnboardingHelper.swift */,
 			);
 			path = Helpers;
@@ -108,7 +109,6 @@
 			isa = PBXGroup;
 			children = (
 				9DC98F402BAF0581006FA21F /* ContentView.swift */,
-				9DC98F692BAF57F7006FA21F /* OnboardingView.swift */,
 				9DC98F512BAF1001006FA21F /* MoodPromptView.swift */,
 				9DC98F532BAF14D1006FA21F /* PlaylistView.swift */,
 				9DC98F702BAF6B9D006FA21F /* SavedPlaylistsView.swift */,
