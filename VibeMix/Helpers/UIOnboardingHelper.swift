@@ -31,13 +31,13 @@ struct UIOnboardingHelper {
   // Core Features
   static func setUpFeatures() -> Array<UIOnboardingFeature> {
     return .init([
-      .init(icon: .init(named: "bolt.fill")!,
+      .init(icon: UIImage(systemName: "bolt.fill")!,
             title: "Mood check-in",
             description: "Record how you feel to generate a curated playlist."),
-      .init(icon: .init(named: "music.note")!,
+      .init(icon: UIImage(systemName: "music.note")!,
             title: "Playlist generator",
             description: "Generate a personal playlist to match your vibe."),
-      .init(icon: .init(named: "square.and.arrow.down")!,
+      .init(icon: UIImage(systemName: "square.and.arrow.down")!,
             title: "Save your favorites",
             description: "Save your favorite playlists to listen on your own terms.")
     ])
@@ -45,10 +45,10 @@ struct UIOnboardingHelper {
   
   // Notice Text
   static func setUpNotice() -> UIOnboardingTextViewConfiguration {
-    return .init(icon: .init(named: "info.circle")!,
+    return .init(icon: UIImage(systemName: "info.circle")!,
                  text: "Developed for music ethusiasts in mind.",
-                 linkTitle: "Learn more...",
-                 link: "www.google.com",
+                 linkTitle: "Learn more",
+                 link: "https://www.google.com/",
                  tint: .init(named: "AppColor"))
   }
   
