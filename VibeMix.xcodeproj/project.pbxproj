@@ -27,6 +27,7 @@
 		9DC98F4A2BAF0584006FA21F /* VibeMix.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VibeMix.xcdatamodel; sourceTree = "<group>"; };
 		9DC98F512BAF1001006FA21F /* MoodPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodPromptView.swift; sourceTree = "<group>"; };
 		9DC98F532BAF14D1006FA21F /* PlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistView.swift; sourceTree = "<group>"; };
+		9DC98F5D2BAF29FF006FA21F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +60,7 @@
 		9DC98F3D2BAF0581006FA21F /* VibeMix */ = {
 			isa = PBXGroup;
 			children = (
+				9DC98F5D2BAF29FF006FA21F /* Info.plist */,
 				9DC98F3E2BAF0581006FA21F /* VibeMixApp.swift */,
 				9DC98F402BAF0581006FA21F /* ContentView.swift */,
 				9DC98F512BAF1001006FA21F /* MoodPromptView.swift */,
@@ -291,6 +293,8 @@
 				DEVELOPMENT_TEAM = 42VHV36Q58;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VibeMix/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "We need to access your music library to give you curated playlists";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -320,6 +324,8 @@
 				DEVELOPMENT_TEAM = 42VHV36Q58;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = VibeMix/Info.plist;
+				INFOPLIST_KEY_NSAppleMusicUsageDescription = "We need to access your music library to give you curated playlists";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
