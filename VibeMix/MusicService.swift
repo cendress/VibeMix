@@ -22,7 +22,7 @@ class MusicService {
     }
   }
   
-  func fetchSongs(forMood mood: MoodOption, context: NSManagedObjectContext, completion: @escaping (Result<[Song], Error>) -> Void) {
+  func fetchSongs(forMood mood: MoodOption, completion: @escaping (Result<[MusicKit.Song], Error>) -> Void) {
     checkMusicAuthorization { [weak self] authorized in
       guard authorized else {
         completion(.failure(NSError(domain: "MusicService", code: 0, userInfo: [NSLocalizedDescriptionKey: "Not authorized to access music library"])))
@@ -38,15 +38,8 @@ class MusicService {
           request.limit = 10
           let response = try await request.response()
           
-          let songs = response.songs.compactMap { musicKitSong -> Song? in
-            let song = Song(context: context)
-            song.title = musicKitSong.title
-            song.artistName = musicKitSong.artistName
-            return song
-          }
           
-          try context.save()
-          completion(.success(songs))
+          completion(.success(response.songs.compactMap { $0 }))
         } catch {
           completion(.failure(error))
         }
