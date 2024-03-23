@@ -44,6 +44,7 @@ struct MoodPromptView: View {
         ForEach(MoodOption.allCases, id: \.self) { mood in
           Button(action: {
             self.selectedMood = mood
+            self.isButtonSelected = false
           }) {
             Text(mood.description)
               .padding()
@@ -62,18 +63,30 @@ struct MoodPromptView: View {
         
         Spacer()
         
-        //      if let selectedMood = selectedMood {
-        //        NavigationLink(destination: PlaylistView(mood: selectedMood)) {
-        //          Text("Find My Vibe")
-        //            .bold()
-        //            .frame(maxWidth: .infinity)
-        //            .padding()
-        //            .background(Color.green)
-        //            .foregroundColor(.white)
-        //            .cornerRadius(10)
-        //            .padding(10)
-        //        }
-        //      }
+        Button(action: {
+          self.isButtonSelected = true
+        }) {
+          Text("Find My Vibe")
+            .bold()
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(self.isButtonSelected == true ? Color("AppColor") : Color.white)
+            .foregroundColor(self.isButtonSelected == true ? Color(.white) : Color("AppColor"))
+            .cornerRadius(25)
+        }
+        .overlay(
+          RoundedRectangle(cornerRadius: 25)
+            .stroke(Color("AppColor"), lineWidth: 2)
+        )
+        .padding(.horizontal, 100)
+        .disabled(selectedMood == nil)
+        
+        
+        NavigationLink(destination: PlaylistView(), isActive: $isButtonSelected) {
+          EmptyView()
+        }
+        
+        Spacer()
       }
       .navigationTitle("New Playlist")
     }
