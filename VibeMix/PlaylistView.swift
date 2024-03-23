@@ -17,7 +17,7 @@ struct PlaylistView: View {
       Text(song.title ?? "Unknown")
     }
     .onAppear {
-      MusicService.shared.fetchSongs(forMood: mood) { result in
+      MusicService.shared.fetchSongs(forMood: mood, context: PersistenceController.shared.viewContext) { result in
         switch result {
         case .success(let fetchedSongs):
           self.songs = fetchedSongs
@@ -34,7 +34,3 @@ struct PlaylistView: View {
   }
 }
 
-
-//#Preview {
-//  PlaylistView(mood: MoodOption(rawValue: (MoodOption(rawValue: "happy") ?? MoodOption(rawValue: "sad"))!.rawValue)
-//}

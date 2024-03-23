@@ -36,7 +36,6 @@ struct MoodPromptView: View {
     NavigationView {
       VStack {
         Spacer()
-        
         Text("How are you feeling?")
           .font(.title)
           .padding(.bottom, 20)
@@ -50,7 +49,7 @@ struct MoodPromptView: View {
               .padding()
               .frame(maxWidth: .infinity)
               .background(self.selectedMood == mood ? Color("AppColor") : Color.white)
-              .foregroundColor(self.selectedMood == mood ? Color(.white) : Color("AppColor"))
+              .foregroundColor(self.selectedMood == mood ? Color.white : Color("AppColor"))
           }
           .overlay(
             RoundedRectangle(cornerRadius: 25)
@@ -64,28 +63,25 @@ struct MoodPromptView: View {
         Spacer()
         
         Button(action: {
-          self.isButtonSelected = true
+          if self.selectedMood != nil {
+            self.isButtonSelected = true
+          }
         }) {
           Text("Find My Vibe")
             .bold()
             .frame(maxWidth: .infinity)
             .padding()
-//            .background(self.isButtonSelected == true ? Color("AppColor") : Color.white)
-//            .foregroundColor(self.isButtonSelected == true ? Color(.white) : Color("AppColor"))
             .background(Color("AppColor"))
             .foregroundColor(.white)
             .cornerRadius(10)
         }
-        .overlay(
-          RoundedRectangle(cornerRadius: 10)
-            .stroke(Color("AppColor"), lineWidth: 2)
-        )
         .padding(.horizontal, 100)
         .disabled(selectedMood == nil)
         
-        
-        NavigationLink(destination: PlaylistView(), isActive: $isButtonSelected) {
-          EmptyView()
+        if let selectedMood = selectedMood {
+          NavigationLink(destination: PlaylistView(mood: selectedMood), isActive: $isButtonSelected) {
+            EmptyView()
+          }
         }
         
         Spacer()
