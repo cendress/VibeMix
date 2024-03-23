@@ -70,12 +70,14 @@ struct MoodPromptView: View {
             .bold()
             .frame(maxWidth: .infinity)
             .padding()
-            .background(self.isButtonSelected == true ? Color("AppColor") : Color.white)
-            .foregroundColor(self.isButtonSelected == true ? Color(.white) : Color("AppColor"))
-            .cornerRadius(25)
+//            .background(self.isButtonSelected == true ? Color("AppColor") : Color.white)
+//            .foregroundColor(self.isButtonSelected == true ? Color(.white) : Color("AppColor"))
+            .background(Color("AppColor"))
+            .foregroundColor(.white)
+            .cornerRadius(10)
         }
         .overlay(
-          RoundedRectangle(cornerRadius: 25)
+          RoundedRectangle(cornerRadius: 10)
             .stroke(Color("AppColor"), lineWidth: 2)
         )
         .padding(.horizontal, 100)
