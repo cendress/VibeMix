@@ -7,13 +7,19 @@
 
 import MusicKit
 import StoreKit
+import CoreData
 
 class MusicService {
-  static let musicService = MusicService()
+  static let shared = MusicService()
   
   private init() {}
   
-  // Check if the app is authorized to access music library
+  let context: NSManagedObjectContext
+  
+  init(context: NSManagedObjectContext) {
+    self.context = context
+  }
+  
   func checkMusicAuthorization(completion: @escaping (Bool) -> Void) {
     SKCloudServiceController.requestAuthorization { status in
       DispatchQueue.main.async {
@@ -23,27 +29,51 @@ class MusicService {
   }
   
   func fetchSongs(forMood mood: MoodOption, completion: @escaping (Result<[Song], Error>) -> Void) {
-    checkMusicAuthorization { authorized in
-      // If music library access is not authorized
+    checkMusicAuthorization { [weak self] authorized in
       guard authorized else {
         completion(.failure(NSError(domain: "MusicService", code: 0, userInfo: [NSLocalizedDescriptionKey: "Not authorized to access music library"])))
         return
       }
-      // Continue if authorization is granted
+      
+      guard let self = self else { return }
+      
+      let searchQuery = self.moodToSearchQuery(mood)
+      
+      // Use MusicKit.Song for the types parameter
+      var request = MusicCatalogSearchRequest(term: searchQuery, types: [MusicKit.Song.self])
+      request.limit = 10
+      
+      Task {
+        do {
+          let response = try await request.response()
+          
+          let songs = response.songs.compactMap { musicKitSong -> Song? in
+            let song = Song(context: self.context)
+            song.title = musicKitSong.title
+            song.artistName = musicKitSong.artistName
+            return song
+          }
+          
+          try self.context.save()
+          
+          completion(.success(songs))
+        } catch {
+          completion(.failure(error))
+        }
+      }
     }
   }
   
-  // Method that searches songs based on mood
   private func moodToSearchQuery(_ mood: MoodOption) -> String {
     switch mood {
     case .happy:
-      return "upbeat happy"
+      return "happy"
     case .sad:
       return "sad"
     case .energetic:
-      return "energetic workout"
+      return "energetic"
     case .relaxed:
-      return "chill relax"
+      return "relaxed"
     }
   }
 }
