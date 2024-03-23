@@ -25,11 +25,12 @@ class SpotifyAuthService {
     
     var request = URLRequest(url: tokenRequestURL)
     request.httpMethod = "POST"
-    let bodyComponents = URLComponents(string: "grant_type=client_credentials")
+    request.addValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+    let bodyComponents = "grant_type=client_credentials"
     let authString = "\(clientId):\(clientSecret)".data(using: .utf8)?.base64EncodedString() ?? ""
     
     request.addValue("Basic \(authString)", forHTTPHeaderField: "Authorization")
-    request.httpBody = bodyComponents?.query?.data(using: .utf8)
+    request.httpBody = bodyComponents.data(using: .utf8)
     
     let task = URLSession.shared.dataTask(with: request) { data, response, error in
       guard let data = data, error == nil else {
