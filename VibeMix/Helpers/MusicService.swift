@@ -5,80 +5,66 @@
 //  Created by Christopher Endress on 3/23/24.
 //
 
-import CoreData
-import MusicKit
-import StoreKit
+import Foundation
+
+//MARK: - Necessary structs to create objects that are used by Spotify API
+
+struct SpotifyTrack: Codable {
+  let name: String
+  let id: String
+}
+
+struct SpotifySearchResponse: Codable {
+  let tracks: SpotifyTracksResponse
+}
+
+struct SpotifyTracksResponse: Codable {
+  let items: [SpotifyTrack]
+}
+
+//MARK: - MusicService class
 
 class MusicService {
   static let shared = MusicService()
   
   private init() {}
   
-  func requestMusicAuthorization(completion: @escaping (Bool) -> Void) {
-    SKCloudServiceController.requestAuthorization { status in
-      DispatchQueue.main.async {
-        switch status {
-        case .authorized:
-          completion(true)
-        default:
-          completion(false)
-        }
+  func fetchSongs(forMood mood: MoodOption, completion: @escaping (Result<[SpotifyTrack], Error>) -> Void) {
+    SpotifyAuthService.shared.requestAccessToken { [weak self] result in
+      switch result {
+      case .success(let accessToken):
+        self?.performSpotifySearch(forMood: mood, accessToken: accessToken, completion: completion)
+      case .failure(let error):
+        completion(.failure(error))
       }
     }
   }
   
-  func requestUserToken(completion: @escaping (Result<String, Error>) -> Void) {
-    let developerToken = TokenProvider.developerToken
+  private func performSpotifySearch(forMood mood: MoodOption, accessToken: String, completion: @escaping (Result<[SpotifyTrack], Error>) -> Void) {
+    let searchQuery = self.moodToSearchQuery(mood)
+    let urlString = "https://api.spotify.com/v1/search?q=\(searchQuery)&type=track&limit=10"
+    guard let url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else {
+      completion(.failure(NSError(domain: "MusicService", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])))
+      return
+    }
     
-    SKCloudServiceController().requestUserToken(forDeveloperToken: developerToken) { userToken, error in
-      DispatchQueue.main.async {
-        if let error = error {
-          completion(.failure(error))
-        } else if let userToken = userToken {
-          completion(.success(userToken))
-        } else {
-          completion(.failure(NSError(domain: "MusicService", code: 1, userInfo: [NSLocalizedDescriptionKey: "Unknown error requesting user token"])))
-        }
-      }
-    }
-  }
-  
-  func fetchSongs(forMood mood: MoodOption, completion: @escaping (Result<[Song], Error>) -> Void) {
-    requestMusicAuthorization { [weak self] authorized in
-      guard authorized, let self = self else {
-        completion(.failure(NSError(domain: "MusicService", code: 0, userInfo: [NSLocalizedDescriptionKey: "Not authorized to access music library"])))
+    var request = URLRequest(url: url)
+    request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+    
+    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+      guard let data = data, error == nil else {
+        completion(.failure(error ?? NSError(domain: "MusicService", code: 1, userInfo: [NSLocalizedDescriptionKey: "Failed to fetch data"])))
         return
       }
       
-      self.requestUserToken { result in
-        switch result {
-        case .success(let userToken):
-          self.performSongFetchRequest(forMood: mood, completion: completion)
-          
-        case .failure(let error):
-          print("Error requesting user token: \(error)")
-          completion(.failure(error))
-        }
-      }
-    }
-  }
-  
-  private func performSongFetchRequest(forMood mood: MoodOption, completion: @escaping (Result<[Song], Error>) -> Void) {
-    let searchQuery = self.moodToSearchQuery(mood)
-    
-    Task {
       do {
-        var request = MusicCatalogSearchRequest(term: searchQuery, types: [Song.self])
-        request.limit = 10
-        let response = try await request.response()
-        
-        let songsArray = Array(response.songs)
-        
-        completion(.success(songsArray))
+        let response = try JSONDecoder().decode(SpotifySearchResponse.self, from: data)
+        completion(.success(response.tracks.items))
       } catch {
         completion(.failure(error))
       }
     }
+    task.resume()
   }
   
   private func moodToSearchQuery(_ mood: MoodOption) -> String {

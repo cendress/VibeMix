@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D48CC192BAF7F8200CEF85F /* SpotifyAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D48CC182BAF7F8200CEF85F /* SpotifyAuthService.swift */; };
 		9DC98F3F2BAF0581006FA21F /* VibeMixApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC98F3E2BAF0581006FA21F /* VibeMixApp.swift */; };
 		9DC98F412BAF0581006FA21F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC98F402BAF0581006FA21F /* ContentView.swift */; };
 		9DC98F432BAF0584006FA21F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DC98F422BAF0584006FA21F /* Assets.xcassets */; };
@@ -25,6 +26,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9D48CC182BAF7F8200CEF85F /* SpotifyAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyAuthService.swift; sourceTree = "<group>"; };
 		9DC98F3B2BAF0581006FA21F /* VibeMix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VibeMix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DC98F3E2BAF0581006FA21F /* VibeMixApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeMixApp.swift; sourceTree = "<group>"; };
 		9DC98F402BAF0581006FA21F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				9DC98F5E2BAF32C8006FA21F /* MusicService.swift */,
+				9D48CC182BAF7F8200CEF85F /* SpotifyAuthService.swift */,
 				9DC98F602BAF4BC2006FA21F /* TokenProvider.swift */,
 				9DC98F472BAF0584006FA21F /* Persistence.swift */,
 				9DC98F692BAF57F7006FA21F /* OnboardingView.swift */,
@@ -211,6 +214,7 @@
 				9DC98F412BAF0581006FA21F /* ContentView.swift in Sources */,
 				9DC98F3F2BAF0581006FA21F /* VibeMixApp.swift in Sources */,
 				9DC98F732BAF6BB2006FA21F /* SettingsView.swift in Sources */,
+				9D48CC192BAF7F8200CEF85F /* SpotifyAuthService.swift in Sources */,
 				9DC98F5F2BAF32C8006FA21F /* MusicService.swift in Sources */,
 				9DC98F522BAF1001006FA21F /* MoodPromptView.swift in Sources */,
 			);

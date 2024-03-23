@@ -6,22 +6,21 @@
 //
 
 import SwiftUI
-import MusicKit
 
 struct PlaylistView: View {
   var mood: MoodOption
-  @State private var songs: [MusicKit.Song] = []
+  @State private var tracks: [SpotifyTrack] = []
   @State private var showError = false
   
   var body: some View {
-    List(songs, id: \.id) { song in
-      Text(song.title)
+    List(tracks, id: \.id) { track in
+      Text(track.name)
     }
     .onAppear {
       MusicService.shared.fetchSongs(forMood: mood) { result in
         switch result {
-        case .success(let fetchedSongs):
-          self.songs = fetchedSongs
+        case .success(let fetchedTracks):
+          self.tracks = fetchedTracks
         case .failure:
           self.showError = true
         }
@@ -30,7 +29,7 @@ struct PlaylistView: View {
     .alert("Error", isPresented: $showError) {
       Button("OK", role: .cancel) { }
     } message: {
-      Text("Could not load songs. Please check your music authorization and internet connection.")
+      Text("Could not load songs. Please check your internet connection.")
     }
   }
 }
