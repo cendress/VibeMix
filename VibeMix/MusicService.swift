@@ -12,4 +12,13 @@ class MusicService {
   static let musicService = MusicService()
   
   private init() {}
+  
+  // Check if the app is authorized to access music library
+  func checkMusicAuthorization(completion: @escaping (Bool) -> Void) {
+    SKCloudServiceController.requestAuthorization { status in
+      DispatchQueue.main.async {
+        completion(status == .authorized)
+      }
+    }
+  }
 }
