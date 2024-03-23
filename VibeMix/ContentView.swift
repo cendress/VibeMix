@@ -6,11 +6,30 @@
 //
 
 import SwiftUI
-import CoreData
 
 struct ContentView: View {
   var body: some View {
-    Text("Hello")
+    NavigationView {
+      VStack(spacing: 20) {
+        Text("Welcome to VibeMix")
+          .font(.largeTitle)
+          .fontWeight(.bold)
+          .padding()
+        
+        Text("Discover playlists that match your current mood")
+          .font(.subheadline)
+          .multilineTextAlignment(.center)
+          .padding([.leading, .trailing], 40)
+        
+        NavigationLink(destination: MoodPromptView()) {
+          Text("Start Quiz")
+            .foregroundColor(.white)
+            .padding()
+            .background(Color(named: "AppColor"))
+            .cornerRadius(10)
+        }
+      }
+    }
   }
 }
 
