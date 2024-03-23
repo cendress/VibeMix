@@ -97,7 +97,6 @@ struct MoodPromptView: View {
   }
 }
 
-
 #Preview {
   MoodPromptView()
 }

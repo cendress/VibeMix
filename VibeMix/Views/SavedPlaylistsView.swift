@@ -10,7 +10,9 @@ import SwiftUI
 struct SavedPlaylistsView: View {
   var body: some View {
     NavigationView {
-      Text("Saved playlists view")
+      VStack {
+        Text("Saved playlists view")
+      }
     }
     .navigationTitle("Saved Playlists")
   }
