@@ -13,8 +13,8 @@ struct SavedPlaylistsView: View {
       VStack {
         Text("Saved playlists view")
       }
+      .navigationTitle("Saved Playlists")
     }
-    .navigationTitle("Saved Playlists")
   }
 }
 

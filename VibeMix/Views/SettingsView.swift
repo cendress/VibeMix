@@ -13,8 +13,8 @@ struct SettingsView: View {
       VStack {
         Text("Settings view")
       }
+      .navigationTitle("Settings")
     }
-    .navigationTitle("Settings")
   }
 }
 
