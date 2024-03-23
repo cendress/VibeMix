@@ -6,18 +6,19 @@
 //
 
 import SwiftUI
+import MusicKit
 
 struct PlaylistView: View {
   var mood: MoodOption
-  @State private var songs: [Song] = []
+  @State private var songs: [MusicKit.Song] = []
   @State private var showError = false
   
   var body: some View {
     List(songs, id: \.id) { song in
-      Text(song.title ?? "Unknown")
+      Text(song.title)
     }
     .onAppear {
-      MusicService.shared.fetchSongs(forMood: mood, context: PersistenceController.shared.viewContext) { result in
+      MusicService.shared.fetchSongs(forMood: mood) { result in
         switch result {
         case .success(let fetchedSongs):
           self.songs = fetchedSongs
@@ -33,4 +34,3 @@ struct PlaylistView: View {
     }
   }
 }
-
