@@ -7,6 +7,9 @@
 .AppleDouble
 .LSOverride
 
+# Files to leave out
+TokenProvider.swift
+
 # Icon must end with two \r
 Icon
 
