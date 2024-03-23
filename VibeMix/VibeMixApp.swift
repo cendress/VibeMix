@@ -16,6 +16,7 @@ struct VibeMixApp: App {
     requestMusicAuthorization()
   }
   
+  
   var body: some Scene {
     WindowGroup {
       ContentView()
