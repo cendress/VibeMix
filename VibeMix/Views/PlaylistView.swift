@@ -47,34 +47,36 @@ struct PlaylistView: View {
 
 struct PlaylistViewButtons: View {
   var body: some View {
-    NavigationView {
-      HStack {
-        NavigationLink(destination: SavedPlaylistsView()) {
-          HStack {
-            Image(systemName: "square.and.arrow.down")
-            Text("Save")
-          }
-          .frame(maxWidth: .infinity)
-          .padding()
-          .background(Color("AppColor"))
-          .foregroundColor(.white)
-          .cornerRadius(10)
+    HStack {
+      Button(action: {
+        //do something
+      }) {
+        HStack {
+          Image(systemName: "square.and.arrow.down")
+          Text("Save")
         }
-        
-        NavigationLink(destination: MoodPromptView()) {
-          HStack {
-            Image(systemName: "gobackward")
-            Text("Reshuffle")
-          }
-          .frame(maxWidth: .infinity)
-          .padding()
-          .background(Color("AppColor"))
-          .foregroundColor(.white)
-          .cornerRadius(10)
-        }
+        .frame(maxWidth: .infinity)
+        .padding(15)
+        .background(Color("AppColor"))
+        .foregroundColor(.white)
+        .cornerRadius(10)
       }
-      .padding(.horizontal, 20)
-      .padding(.bottom)
+      
+      Button(action: {
+        // do something
+      }) {
+        HStack {
+          Image(systemName: "gobackward")
+          Text("Reshuffle")
+        }
+        .frame(maxWidth: .infinity)
+        .padding(15)
+        .background(Color("AppColor"))
+        .foregroundColor(.white)
+        .cornerRadius(10)
+      }
     }
+    .padding(.horizontal, 40)
+    .padding(.bottom)
   }
 }
