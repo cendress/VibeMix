@@ -22,10 +22,10 @@ struct ContentView: View {
           .padding([.leading, .trailing], 40)
         
         NavigationLink(destination: MoodPromptView()) {
-          Text("Start Quiz")
+          Text("Get Started")
             .foregroundColor(.white)
             .padding()
-            .background(Color(named: "AppColor"))
+            .background(Color("AppColor"))
             .cornerRadius(10)
         }
       }

@@ -13,6 +13,7 @@
 		9DC98F462BAF0584006FA21F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DC98F452BAF0584006FA21F /* Preview Assets.xcassets */; };
 		9DC98F482BAF0584006FA21F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC98F472BAF0584006FA21F /* Persistence.swift */; };
 		9DC98F4B2BAF0584006FA21F /* VibeMix.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9DC98F492BAF0584006FA21F /* VibeMix.xcdatamodeld */; };
+		9DC98F522BAF1001006FA21F /* MoodPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC98F512BAF1001006FA21F /* MoodPromptView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +24,7 @@
 		9DC98F452BAF0584006FA21F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9DC98F472BAF0584006FA21F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		9DC98F4A2BAF0584006FA21F /* VibeMix.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VibeMix.xcdatamodel; sourceTree = "<group>"; };
+		9DC98F512BAF1001006FA21F /* MoodPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodPromptView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				9DC98F472BAF0584006FA21F /* Persistence.swift */,
 				9DC98F492BAF0584006FA21F /* VibeMix.xcdatamodeld */,
 				9DC98F442BAF0584006FA21F /* Preview Content */,
+				9DC98F512BAF1001006FA21F /* MoodPromptView.swift */,
 			);
 			path = VibeMix;
 			sourceTree = "<group>";
@@ -147,6 +150,7 @@
 				9DC98F482BAF0584006FA21F /* Persistence.swift in Sources */,
 				9DC98F412BAF0581006FA21F /* ContentView.swift in Sources */,
 				9DC98F3F2BAF0581006FA21F /* VibeMixApp.swift in Sources */,
+				9DC98F522BAF1001006FA21F /* MoodPromptView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
