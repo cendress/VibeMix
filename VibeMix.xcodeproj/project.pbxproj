@@ -59,11 +59,11 @@
 			children = (
 				9DC98F3E2BAF0581006FA21F /* VibeMixApp.swift */,
 				9DC98F402BAF0581006FA21F /* ContentView.swift */,
+				9DC98F512BAF1001006FA21F /* MoodPromptView.swift */,
 				9DC98F422BAF0584006FA21F /* Assets.xcassets */,
 				9DC98F472BAF0584006FA21F /* Persistence.swift */,
 				9DC98F492BAF0584006FA21F /* VibeMix.xcdatamodeld */,
 				9DC98F442BAF0584006FA21F /* Preview Content */,
-				9DC98F512BAF1001006FA21F /* MoodPromptView.swift */,
 			);
 			path = VibeMix;
 			sourceTree = "<group>";
