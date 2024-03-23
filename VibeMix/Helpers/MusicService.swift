@@ -42,7 +42,7 @@ class MusicService {
   
   private func performSpotifySearch(forMood mood: MoodOption, accessToken: String, completion: @escaping (Result<[SpotifyTrack], Error>) -> Void) {
     let searchQuery = self.moodToSearchQuery(mood)
-    let urlString = "https://api.spotify.com/v1/search?q=\(searchQuery)&type=track&limit=10"
+    let urlString = "https://api.spotify.com/v1/search?q=\(searchQuery)&type=track&limit=25"
     guard let url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else {
       completion(.failure(NSError(domain: "MusicService", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])))
       return
