@@ -21,4 +21,15 @@ class MusicService {
       }
     }
   }
+  
+  func fetchSongs(forMood mood: MoodOption, completion: @escaping (Result<[Song], Error>) -> Void) {
+    checkMusicAuthorization { authorized in
+      // If music library access is not authorized
+      guard authorized else {
+        completion(.failure(NSError(domain: "MusicService", code: 0, userInfo: [NSLocalizedDescriptionKey: "Not authorized to access music library"])))
+        return
+      }
+      // Continue if authorization is granted
+    }
+  }
 }
