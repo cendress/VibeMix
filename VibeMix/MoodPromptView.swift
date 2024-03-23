@@ -29,8 +29,52 @@ enum MoodOption: String, CaseIterable {
 }
 
 struct MoodPromptView: View {
+  @State private var selectedMood: MoodOption?
+  @State private var isButtonSelected = false
+  
   var body: some View {
-    Text("Hello")
+    VStack {
+      Spacer()
+      
+      Text("How are you feeling?")
+        .font(.largeTitle)
+        .padding(.bottom, 20)
+      
+      ForEach(MoodOption.allCases, id: \.self) { mood in
+        Button(action: {
+          self.selectedMood = mood
+        }) {
+          Text(mood.description)
+            .padding()
+            .frame(maxWidth: .infinity)
+            .background(self.selectedMood == mood ? Color("AppColor") : Color.white)
+            .foregroundColor(self.selectedMood == mood ? Color(.white) : Color("AppColor"))
+        }
+        .overlay(
+          RoundedRectangle(cornerRadius: 25)
+            .stroke(selectedMood == mood ? Color.clear : Color("AppColor"), lineWidth: 2)
+        )
+        .cornerRadius(25)
+      }
+      .padding(.vertical, 5)
+      .padding(.horizontal, 20)
+      
+      Spacer()
+      
+      //      if let selectedMood = selectedMood {
+      //        NavigationLink(destination: PlaylistView(mood: selectedMood)) {
+      //          Text("Find My Vibe")
+      //            .bold()
+      //            .frame(maxWidth: .infinity)
+      //            .padding()
+      //            .background(Color.green)
+      //            .foregroundColor(.white)
+      //            .cornerRadius(10)
+      //            .padding(10)
+      //        }
+      //      }
+    }
+    .padding()
   }
 }
 

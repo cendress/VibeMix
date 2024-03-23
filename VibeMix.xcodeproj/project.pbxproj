@@ -14,6 +14,7 @@
 		9DC98F482BAF0584006FA21F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC98F472BAF0584006FA21F /* Persistence.swift */; };
 		9DC98F4B2BAF0584006FA21F /* VibeMix.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9DC98F492BAF0584006FA21F /* VibeMix.xcdatamodeld */; };
 		9DC98F522BAF1001006FA21F /* MoodPromptView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC98F512BAF1001006FA21F /* MoodPromptView.swift */; };
+		9DC98F542BAF14D1006FA21F /* PlaylistView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC98F532BAF14D1006FA21F /* PlaylistView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		9DC98F472BAF0584006FA21F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		9DC98F4A2BAF0584006FA21F /* VibeMix.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = VibeMix.xcdatamodel; sourceTree = "<group>"; };
 		9DC98F512BAF1001006FA21F /* MoodPromptView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodPromptView.swift; sourceTree = "<group>"; };
+		9DC98F532BAF14D1006FA21F /* PlaylistView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				9DC98F3E2BAF0581006FA21F /* VibeMixApp.swift */,
 				9DC98F402BAF0581006FA21F /* ContentView.swift */,
 				9DC98F512BAF1001006FA21F /* MoodPromptView.swift */,
+				9DC98F532BAF14D1006FA21F /* PlaylistView.swift */,
 				9DC98F422BAF0584006FA21F /* Assets.xcassets */,
 				9DC98F472BAF0584006FA21F /* Persistence.swift */,
 				9DC98F492BAF0584006FA21F /* VibeMix.xcdatamodeld */,
@@ -146,6 +149,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DC98F542BAF14D1006FA21F /* PlaylistView.swift in Sources */,
 				9DC98F4B2BAF0584006FA21F /* VibeMix.xcdatamodeld in Sources */,
 				9DC98F482BAF0584006FA21F /* Persistence.swift in Sources */,
 				9DC98F412BAF0581006FA21F /* ContentView.swift in Sources */,
