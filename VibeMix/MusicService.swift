@@ -8,3 +8,8 @@
 import MusicKit
 import StoreKit
 
+class MusicService {
+  static let musicService = MusicService()
+  
+  private init() {}
+}
