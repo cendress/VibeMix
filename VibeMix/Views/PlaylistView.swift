@@ -35,6 +35,44 @@ struct PlaylistView: View {
       } message: {
         Text("Could not load songs. Please check your internet connection.")
       }
+      
+      Spacer()
+      Spacer()
+      
+      PlaylistViewButtons()
+    }
+  }
+}
+
+struct PlaylistViewButtons: View {
+  var body: some View {
+    NavigationView {
+      HStack(spacing: 10) {
+        NavigationLink(destination: SavedPlaylistsView()) {
+          HStack {
+            Image(systemName: "square.and.arrow.down")
+            Text("Save")
+          }
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(Color("AppColor"))
+            .foregroundColor(.white)
+            .cornerRadius(10)
+        }
+        
+        NavigationLink(destination: MoodPromptView()) {
+          HStack {
+            Image(systemName: "gobackward")
+            Text("Reshuffle")
+          }
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(Color("AppColor"))
+            .foregroundColor(.white)
+            .cornerRadius(10)
+        }
+      }
+      .padding(.horizontal, 20)
     }
   }
 }
