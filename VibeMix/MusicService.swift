@@ -32,4 +32,18 @@ class MusicService {
       // Continue if authorization is granted
     }
   }
+  
+  // Method that searches songs based on mood
+  private func moodToSearchQuery(_ mood: MoodOption) -> String {
+    switch mood {
+    case .happy:
+      return "upbeat happy"
+    case .sad:
+      return "sad"
+    case .energetic:
+      return "energetic workout"
+    case .relaxed:
+      return "chill relax"
+    }
+  }
 }
