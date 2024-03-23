@@ -13,13 +13,23 @@ struct ContentView: View {
   
   var body: some View {
     NavigationView {
-      Text("Hello, UIOnboarding!")
-        .toolbar {
-          Button {
-            showingOnboarding = true
-          } label: {
-            Image(systemName: "repeat")
-          }
+      VStack(spacing: 20) {
+        Text("Welcome to VibeMix")
+          .font(.largeTitle)
+          .fontWeight(.bold)
+          .padding()
+        
+        Text("Discover playlists that match your current mood")
+          .font(.subheadline)
+          .multilineTextAlignment(.center)
+          .padding([.leading, .trailing], 40)
+        
+        NavigationLink(destination: MoodPromptView()) {
+          Text("Get Started")
+            .foregroundColor(.white)
+            .padding()
+            .background(Color("AppColor"))
+            .cornerRadius(10)
         }
         .fullScreenCover(isPresented: $showingOnboarding, content: {
           OnboardingView.init()
@@ -28,6 +38,7 @@ struct ContentView: View {
               UserDefaults.standard.set(true, forKey: "hasCompletedOnboarding")
             }
         })
+      }
     }
   }
 }
@@ -38,7 +49,7 @@ struct ContentView_Previews: PreviewProvider {
   }
 }
 
-//struct ContentView: View {
+////struct ContentView: View {
 //  var body: some View {
 //    NavigationView {
 //      VStack(spacing: 20) {
