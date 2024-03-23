@@ -8,18 +8,31 @@
 import SwiftUI
 import UIOnboarding
 
+import SwiftUI
+
 struct ContentView: View {
   @State private var showingOnboarding = !UserDefaults.standard.bool(forKey: "hasCompletedOnboarding")
   
   var body: some View {
-    MoodPromptView()
-      .fullScreenCover(isPresented: $showingOnboarding, content: {
-        OnboardingView.init()
-          .edgesIgnoringSafeArea(.all)
-          .onDisappear {
-            UserDefaults.standard.set(true, forKey: "hasCompletedOnboarding")
-          }
-      })
+    TabView {
+      MoodPromptView()
+        .tabItem {
+          Image(systemName: "wand.and.stars")
+        }
+      
+      Text("Second View")
+        .tabItem {
+          Image(systemName: "heart")
+        }
+    }
+    .fullScreenCover(isPresented: $showingOnboarding) {
+      OnboardingView.init()
+        .edgesIgnoringSafeArea(.all)
+        .onDisappear {
+          UserDefaults.standard.set(true, forKey: "hasCompletedOnboarding")
+          showingOnboarding = false
+        }
+    }
   }
 }
 
