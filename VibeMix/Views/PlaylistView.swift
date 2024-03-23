@@ -19,7 +19,27 @@ struct PlaylistView: View {
           .font(.title)
         
         List(tracks, id: \.id) { track in
-          Text(track.name)
+          HStack {
+            if let imageUrl = track.imageUrl {
+              AsyncImage(url: imageUrl) { image in
+                image.resizable()
+              } placeholder: {
+                Color.gray
+              }
+              .frame(width: 50, height: 50)
+              .cornerRadius(5)
+            } else {
+              Image(systemName: "music.note")
+                .frame(width: 50, height: 50)
+            }
+            
+            VStack(alignment: .leading) {
+              Text(track.name)
+                .fontWeight(.bold)
+              Text(track.artistName)
+                .font(.caption)
+            }
+          }
         }
         .frame(minHeight: 0, maxHeight: .infinity)
         .onAppear {

@@ -12,6 +12,26 @@ import Foundation
 struct SpotifyTrack: Codable {
   let name: String
   let id: String
+  let album: Album
+  var artistName: String {
+    album.artists.first?.name ?? "Unknown Artist"
+  }
+  var imageUrl: URL? {
+    URL(string: album.images.first?.url ?? "")
+  }
+}
+
+struct Album: Codable {
+  let images: [SpotifyImage]
+  let artists: [Artist]
+}
+
+struct Artist: Codable {
+  let name: String
+}
+
+struct SpotifyImage: Codable {
+  let url: String
 }
 
 struct SpotifySearchResponse: Codable {
