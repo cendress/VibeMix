@@ -27,28 +27,56 @@ class MusicService {
     }
   }
   
+  func requestUserToken(completion: @escaping (Result<String, Error>) -> Void) {
+    let developerToken = TokenProvider.developerToken
+    
+    SKCloudServiceController().requestUserToken(forDeveloperToken: developerToken) { userToken, error in
+      DispatchQueue.main.async {
+        if let error = error {
+          completion(.failure(error))
+        } else if let userToken = userToken {
+          completion(.success(userToken))
+        } else {
+          completion(.failure(NSError(domain: "MusicService", code: 1, userInfo: [NSLocalizedDescriptionKey: "Unknown error requesting user token"])))
+        }
+      }
+    }
+  }
+  
   func fetchSongs(forMood mood: MoodOption, completion: @escaping (Result<[Song], Error>) -> Void) {
-    requestMusicAuthorization { authorized in
-      guard authorized else {
+    requestMusicAuthorization { [weak self] authorized in
+      guard authorized, let self = self else {
         completion(.failure(NSError(domain: "MusicService", code: 0, userInfo: [NSLocalizedDescriptionKey: "Not authorized to access music library"])))
         return
       }
       
-      let searchQuery = self.moodToSearchQuery(mood)
-      
-      Task {
-        do {
-          var request = MusicCatalogSearchRequest(term: searchQuery, types: [Song.self])
-          request.limit = 10
+      self.requestUserToken { result in
+        switch result {
+        case .success(let userToken):
+          self.performSongFetchRequest(forMood: mood, completion: completion)
           
-          let response = try await request.response()
-          
-          let songsArray = Array(response.songs)
-          
-          completion(.success(songsArray))
-        } catch {
+        case .failure(let error):
+          print("Error requesting user token: \(error)")
           completion(.failure(error))
         }
+      }
+    }
+  }
+  
+  private func performSongFetchRequest(forMood mood: MoodOption, completion: @escaping (Result<[Song], Error>) -> Void) {
+    let searchQuery = self.moodToSearchQuery(mood)
+    
+    Task {
+      do {
+        var request = MusicCatalogSearchRequest(term: searchQuery, types: [Song.self])
+        request.limit = 10
+        let response = try await request.response()
+        
+        let songsArray = Array(response.songs)
+        
+        completion(.success(songsArray))
+      } catch {
+        completion(.failure(error))
       }
     }
   }
