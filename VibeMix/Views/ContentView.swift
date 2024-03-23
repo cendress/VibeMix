@@ -20,11 +20,17 @@ struct ContentView: View {
           Image(systemName: "wand.and.stars")
         }
       
-      Text("Second View")
+      SavedPlaylistsView()
         .tabItem {
           Image(systemName: "heart")
         }
+      
+      SettingsView()
+        .tabItem {
+          Image(systemName: "gear")
+        }
     }
+    .accentColor(Color("AppColor"))
     .fullScreenCover(isPresented: $showingOnboarding) {
       OnboardingView.init()
         .edgesIgnoringSafeArea(.all)
