@@ -13,23 +13,28 @@ struct PlaylistView: View {
   @State private var showError = false
   
   var body: some View {
-    List(tracks, id: \.id) { track in
-      Text(track.name)
-    }
-    .onAppear {
-      MusicService.shared.fetchSongs(forMood: mood) { result in
-        switch result {
-        case .success(let fetchedTracks):
-          self.tracks = fetchedTracks
-        case .failure:
-          self.showError = true
+    VStack {
+      Text("Playlist")
+        .font(.title)
+      
+      List(tracks, id: \.id) { track in
+        Text(track.name)
+      }
+      .onAppear {
+        MusicService.shared.fetchSongs(forMood: mood) { result in
+          switch result {
+          case .success(let fetchedTracks):
+            self.tracks = fetchedTracks
+          case .failure:
+            self.showError = true
+          }
         }
       }
-    }
-    .alert("Error", isPresented: $showError) {
-      Button("OK", role: .cancel) { }
-    } message: {
-      Text("Could not load songs. Please check your internet connection.")
+      .alert("Error", isPresented: $showError) {
+        Button("OK", role: .cancel) { }
+      } message: {
+        Text("Could not load songs. Please check your internet connection.")
+      }
     }
   }
 }
