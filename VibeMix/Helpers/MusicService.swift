@@ -88,15 +88,36 @@ class MusicService {
   }
   
   private func moodToSearchQuery(_ mood: MoodOption) -> String {
+    let happyKeywords = [
+      "\"happy music\"", "\"upbeat tracks\"", "\"feel-good playlist\"",
+      "\"positive vibes\"", "\"joyful beats\"", "\"uplifting songs\"",
+      "\"happy hits\"", "\"good mood music\"", "\"cheerful tunes\""
+    ]
+    let sadKeywords = [
+      "\"sad songs\"", "\"melancholic music\"", "\"emotional tracks\"",
+      "\"heartbreak songs\"", "\"tearjerkers\"", "\"deeply emotional\"",
+      "\"reflective music\"", "\"moody tracks\"", "\"melancholy vibes\""
+    ]
+    let energeticKeywords = [
+      "\"energetic beats\"", "\"workout music\"", "\"high-energy tracks\"",
+      "\"pump-up songs\"", "\"motivational music\"", "\"gym playlist\"",
+      "\"running tracks\"", "\"dance hits\"", "\"power workout\""
+    ]
+    let relaxedKeywords = [
+      "\"chill vibes\"", "\"relaxing music\"", "\"mellow tunes\"",
+      "\"soft music\"", "\"peaceful melodies\"", "\"easy listening\"",
+      "\"calm vibes\"", "\"soothing sounds\"", "\"gentle acoustic\""
+    ]
+    
     switch mood {
     case .happy:
-      return "happy positive songs"
+      return happyKeywords.randomElement() ?? "\"happy music\""
     case .sad:
-      return "sad"
+      return sadKeywords.randomElement() ?? "\"sad songs\""
     case .energetic:
-      return "energetic"
+      return energeticKeywords.randomElement() ?? "\"energetic beats\""
     case .relaxed:
-      return "relaxed"
+      return relaxedKeywords.randomElement() ?? "\"chill vibes\""
     }
   }
 }
