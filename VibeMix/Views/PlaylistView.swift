@@ -15,8 +15,8 @@ struct PlaylistView: View {
   var body: some View {
     GeometryReader { geometry in
       VStack {
-        Text("Playlist")
-          .font(.title)
+//        Text("Playlist")
+//          .font(.largeTitle)
         
         List(tracks, id: \.id) { track in
           HStack {
@@ -69,11 +69,11 @@ struct PlaylistViewButtons: View {
   var body: some View {
     HStack {
       Button(action: {
-        //do something
+        // do something
       }) {
         HStack {
-          Image(systemName: "square.and.arrow.down")
-          Text("Save")
+          Image(systemName: "gobackward")
+          Text("Reshuffle")
         }
         .frame(maxWidth: .infinity)
         .padding(15)
@@ -83,11 +83,11 @@ struct PlaylistViewButtons: View {
       }
       
       Button(action: {
-        // do something
+        //do something
       }) {
         HStack {
-          Image(systemName: "gobackward")
-          Text("Reshuffle")
+          Image(systemName: "square.and.arrow.down")
+          Text("Save")
         }
         .frame(maxWidth: .infinity)
         .padding(15)
