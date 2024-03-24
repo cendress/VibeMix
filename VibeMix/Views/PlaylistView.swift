@@ -15,9 +15,6 @@ struct PlaylistView: View {
   var body: some View {
     GeometryReader { geometry in
       VStack {
-//        Text("Playlist")
-//          .font(.largeTitle)
-        
         List(tracks, id: \.id) { track in
           HStack {
             if let imageUrl = track.imageUrl {

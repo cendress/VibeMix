@@ -31,12 +31,6 @@ struct MoodPromptView: View {
   
   var body: some View {
     NavigationView {
-      ZStack {
-//        Image("SubtleGradient")
-//          .resizable()
-//          .aspectRatio(contentMode: .fill)
-//          .edgesIgnoringSafeArea(.all)
-        
         VStack {
           Spacer()
           Spacer()
@@ -91,7 +85,7 @@ struct MoodPromptView: View {
           Spacer()
           Spacer()
         }
-      }
+      
       .navigationTitle("New Playlist")
     }
   }

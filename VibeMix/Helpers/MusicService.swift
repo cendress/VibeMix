@@ -90,7 +90,7 @@ class MusicService {
   private func moodToSearchQuery(_ mood: MoodOption) -> String {
     switch mood {
     case .happy:
-      return "happy"
+      return "happy positive songs"
     case .sad:
       return "sad"
     case .energetic:

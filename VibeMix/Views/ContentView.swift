@@ -8,8 +8,6 @@
 import SwiftUI
 import UIOnboarding
 
-import SwiftUI
-
 struct ContentView: View {
   @State private var showingOnboarding = !UserDefaults.standard.bool(forKey: "hasCompletedOnboarding")
   

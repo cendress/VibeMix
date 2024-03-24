@@ -9,6 +9,7 @@
 
 # Files to leave out
 TokenProvider.swift
+AppIcon.png
 
 # Icon must end with two \r
 Icon
