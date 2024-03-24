@@ -89,24 +89,24 @@ class MusicService {
   
   private func moodToSearchQuery(_ mood: MoodOption) -> String {
     let happyKeywords = [
-      "\"happy music\"", "\"upbeat tracks\"", "\"feel-good playlist\"",
-      "\"positive vibes\"", "\"joyful beats\"", "\"uplifting songs\"",
-      "\"happy hits\"", "\"good mood music\"", "\"cheerful tunes\""
+      "\"popular happy music\"", "\"popular upbeat tracks\"", "\"feel-good playlist\"",
+      "\"positive vibes\"", "\"popular joyful beats\"", "\"popular uplifting songs\"",
+      "\"top happy hits\"", "\"good mood music\"", "\"popular cheerful tunes\""
     ]
     let sadKeywords = [
-      "\"sad songs\"", "\"melancholic music\"", "\"emotional tracks\"",
-      "\"heartbreak songs\"", "\"tearjerkers\"", "\"deeply emotional\"",
-      "\"reflective music\"", "\"moody tracks\"", "\"melancholy vibes\""
+      "\"top sad songs\"", "\"popular melancholic music\"", "\"top emotional tracks\"",
+      "\"popular heartbreak songs\"", "\"famous tearjerkers\"", "\"deeply emotional\"",
+      "\"deep reflective music\"", "\"top moody tracks\"", "\"top melancholy vibes\""
     ]
     let energeticKeywords = [
-      "\"energetic beats\"", "\"workout music\"", "\"high-energy tracks\"",
+      "\"top energetic beats\"", "\"workout music\"", "\"high-energy tracks\"",
       "\"pump-up songs\"", "\"motivational music\"", "\"gym playlist\"",
-      "\"running tracks\"", "\"dance hits\"", "\"power workout\""
+      "\"running tracks\"", "\"top dance hits\"", "\"power workout\""
     ]
     let relaxedKeywords = [
-      "\"chill vibes\"", "\"relaxing music\"", "\"mellow tunes\"",
-      "\"soft music\"", "\"peaceful melodies\"", "\"easy listening\"",
-      "\"calm vibes\"", "\"soothing sounds\"", "\"gentle acoustic\""
+      "\"top chill vibes\"", "\"top relaxing music\"", "\"popular mellow tunes\"",
+      "\"top soft music\"", "\"popular peaceful melodies\"", "\"easy listening\"",
+      "\"top calm vibes\"", "\"popular soothing sounds\"", "\"gentle acoustic songs\""
     ]
     
     switch mood {
