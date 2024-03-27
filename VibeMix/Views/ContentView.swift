@@ -6,12 +6,15 @@
 //
 
 import SwiftUI
+// Library used to create onboarding screens
 import UIOnboarding
 
 struct ContentView: View {
+  // Ensure onboarding screens are shown only once by using UserDefaults
   @State private var showingOnboarding = !UserDefaults.standard.bool(forKey: "hasCompletedOnboarding")
   
   var body: some View {
+    // Creates tab bar
     TabView {
       MoodPromptView()
         .tabItem {
@@ -32,6 +35,7 @@ struct ContentView: View {
     .fullScreenCover(isPresented: $showingOnboarding) {
       OnboardingView.init()
         .edgesIgnoringSafeArea(.all)
+      // Ensure onboarding screens are not shown again if they appear once
         .onDisappear {
           UserDefaults.standard.set(true, forKey: "hasCompletedOnboarding")
           showingOnboarding = false
