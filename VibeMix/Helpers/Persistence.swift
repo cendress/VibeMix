@@ -7,6 +7,7 @@
 
 import CoreData
 
+// Create a shared persistence controller
 class PersistenceController {
   static let shared = PersistenceController()
   
