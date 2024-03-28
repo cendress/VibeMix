@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct PlaylistView: View {
+  // Variable to determine what mood to fetch
   var mood: MoodOption
   @State private var tracks: [SpotifyTrack] = []
   @State private var showError = false
@@ -15,8 +16,10 @@ struct PlaylistView: View {
   var body: some View {
     GeometryReader { geometry in
       VStack {
+        // Create a list displaying tracks
         List(tracks, id: \.id) { track in
           HStack {
+            // Display an image if the URL exists. If not, display a placeholder
             if let imageUrl = track.imageUrl {
               AsyncImage(url: imageUrl) { image in
                 image.resizable()
@@ -30,6 +33,7 @@ struct PlaylistView: View {
                 .frame(width: 50, height: 50)
             }
             
+            // Display track name and artist
             VStack(alignment: .leading) {
               Text(track.name)
                 .fontWeight(.bold)
@@ -38,7 +42,9 @@ struct PlaylistView: View {
             }
           }
         }
+        // Have the list extend to fit all available space
         .frame(minHeight: 0, maxHeight: .infinity)
+        // Fetch songs when the view appears
         .onAppear {
           MusicService.shared.fetchSongs(forMood: mood) { result in
             switch result {
@@ -49,6 +55,7 @@ struct PlaylistView: View {
             }
           }
         }
+        // Show errors if songs can't be fetched
         .alert("Error", isPresented: $showError) {
           Button("OK", role: .cancel) { }
         } message: {
@@ -62,6 +69,7 @@ struct PlaylistView: View {
   }
 }
 
+// Define buttons view to perform actions
 struct PlaylistViewButtons: View {
   var body: some View {
     HStack {
