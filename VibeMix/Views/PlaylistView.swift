@@ -74,7 +74,8 @@ struct PlaylistViewButtons: View {
   var body: some View {
     HStack {
       Button(action: {
-        // do something
+        // Perform an action
+        // Refetch new songs
       }) {
         HStack {
           Image(systemName: "gobackward")
@@ -88,7 +89,8 @@ struct PlaylistViewButtons: View {
       }
       
       Button(action: {
-        //do something
+        // Perform an action
+        // Save the playlist
       }) {
         HStack {
           Image(systemName: "square.and.arrow.down")
