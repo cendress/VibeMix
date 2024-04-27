@@ -15,7 +15,6 @@ struct PlaylistView: View {
   @State private var isLoading = true
   
   var body: some View {
-    GeometryReader { geometry in
       VStack {
         if isLoading {
           // Show a loading indicator while the tracks are loading
@@ -50,11 +49,8 @@ struct PlaylistView: View {
               }
             }
           }
-          // Have the list extend to fit all available space
-          .frame(minHeight: 0, maxHeight: .infinity)
           
           PlaylistViewButtons()
-            .frame(height: geometry.size.height * 0.2)
         }
       }
       // Fetch songs when the view appears
@@ -77,7 +73,6 @@ struct PlaylistView: View {
       } message: {
         Text("Could not load songs. Please check your internet connection.")
       }
-    }
   }
 }
 
