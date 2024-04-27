@@ -42,6 +42,10 @@ struct SpotifyImage: Codable {
   let url: String
 }
 
+struct SpotifyRecommendationsResponse: Codable {
+  let tracks: [SpotifyTrack]
+}
+
 // Model for the top-level response from a Spotify track search
 struct SpotifySearchResponse: Codable {
   let tracks: SpotifyTracksResponse
@@ -78,39 +82,29 @@ class MusicService {
   
   // Private method to perform the actual Spotify search request
   private func performSpotifySearch(forMood mood: MoodOption, accessToken: String, completion: @escaping (Result<[SpotifyTrack], Error>) -> Void) {
-    // Convert the mood to a search query string
     let searchQuery = self.moodToSearchQuery(mood)
-    // Construct the search URL
-    let urlString = "https://api.spotify.com/v1/search?q=\(searchQuery)&type=track&limit=25"
-    // Ensure the URL is valid
+    let urlString = "https://api.spotify.com/v1/recommendations?seed_genres=\(searchQuery)&limit=25"
     guard let url = URL(string: urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? "") else {
       completion(.failure(NSError(domain: "MusicService", code: 0, userInfo: [NSLocalizedDescriptionKey: "Invalid URL"])))
       return
     }
     
-    // Create a URLRequest object and set the authorization header with the access token
     var request = URLRequest(url: url)
     request.addValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
     
-    // Execute the network request
     let task = URLSession.shared.dataTask(with: request) { data, response, error in
-      // Ensure data was received and there were no errors
       guard let data = data, error == nil else {
         completion(.failure(error ?? NSError(domain: "MusicService", code: 1, userInfo: [NSLocalizedDescriptionKey: "Failed to fetch data"])))
         return
       }
       
-      // Attempt to decode the JSON response into SpotifySearchResponse
       do {
-        let response = try JSONDecoder().decode(SpotifySearchResponse.self, from: data)
-        // On success, return the items (tracks) found
-        completion(.success(response.tracks.items))
+        let response = try JSONDecoder().decode(SpotifyRecommendationsResponse.self, from: data)
+        completion(.success(response.tracks))
       } catch {
-        // If decoding fails, return the error
         completion(.failure(error))
       }
     }
-    // Start the network task
     task.resume()
   }
   
@@ -118,13 +112,13 @@ class MusicService {
   private func moodToSearchQuery(_ mood: MoodOption) -> String {
     switch mood {
     case .happy:
-      return "\"uplifting playlist\" OR \"feel-good genres\""
+      return "pop,dance"
     case .sad:
-      return "\"reflective playlist\" OR \"emotional depth\""
+      return "blues,soul"
     case .energetic:
-      return "\"workout playlist\" OR \"high-energy genres\""
+      return "electronic,rock"
     case .relaxed:
-      return "\"chill playlist\" OR \"easy listening music\""
+      return "jazz,classical"
     }
   }
 }
