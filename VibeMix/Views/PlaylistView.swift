@@ -58,8 +58,10 @@ struct PlaylistView: View {
               switch result {
               case .success(let fetchedTracks):
                 self.tracks = fetchedTracks
+                self.isLoading = false
               case .failure:
                 self.showError = true
+                self.isLoading = false
               }
             }
           }
