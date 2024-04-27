@@ -58,10 +58,10 @@ struct SpotifyTracksResponse: Codable {
 class MusicService {
   // Shared instance for accessing the MusicService globally
   static let shared = MusicService()
-
+  
   private init() {}
   
-  // Public method to fetch songs based on the provided MoodOption. The completion handler returns a Result type containing an array of SpotifyTrack or an error.
+  // Public method to fetch songs based on the provided MoodOption. The completion handler returns a Result type containing an array of SpotifyTrack or an error
   func fetchSongs(forMood mood: MoodOption, completion: @escaping (Result<[SpotifyTrack], Error>) -> Void) {
     // Request an access token from the SpotifyAuthService
     SpotifyAuthService.shared.requestAccessToken { [weak self] result in
@@ -116,36 +116,15 @@ class MusicService {
   
   // Converts a MoodOption to a suitable search query for Spotify
   private func moodToSearchQuery(_ mood: MoodOption) -> String {
-    let happyKeywords = [
-      "\"popular happy music\"", "\"popular upbeat tracks\"", "\"feel-good playlist\"",
-      "\"positive vibes\"", "\"popular joyful beats\"", "\"popular uplifting songs\"",
-      "\"top happy hits\"", "\"good mood music\"", "\"popular cheerful tunes\""
-    ]
-    let sadKeywords = [
-      "\"top sad songs\"", "\"popular melancholic music\"", "\"top emotional tracks\"",
-      "\"popular heartbreak songs\"", "\"famous tearjerkers\"", "\"deeply emotional\"",
-      "\"deep reflective music\"", "\"top moody tracks\"", "\"top melancholy vibes\""
-    ]
-    let energeticKeywords = [
-      "\"top energetic beats\"", "\"workout music\"", "\"high-energy tracks\"",
-      "\"pump-up songs\"", "\"motivational music\"", "\"gym playlist\"",
-      "\"running tracks\"", "\"top dance hits\"", "\"power workout\""
-    ]
-    let relaxedKeywords = [
-      "\"top chill vibes\"", "\"top relaxing music\"", "\"popular mellow tunes\"",
-      "\"top soft music\"", "\"popular peaceful melodies\"", "\"easy listening\"",
-      "\"top calm vibes\"", "\"popular soothing sounds\"", "\"gentle acoustic songs\""
-    ]
-    
     switch mood {
     case .happy:
-      return happyKeywords.randomElement() ?? "\"happy music\""
+      return "\"uplifting playlist\" OR \"feel-good genres\""
     case .sad:
-      return sadKeywords.randomElement() ?? "\"sad songs\""
+      return "\"reflective playlist\" OR \"emotional depth\""
     case .energetic:
-      return energeticKeywords.randomElement() ?? "\"energetic beats\""
+      return "\"workout playlist\" OR \"high-energy genres\""
     case .relaxed:
-      return relaxedKeywords.randomElement() ?? "\"chill vibes\""
+      return "\"chill playlist\" OR \"easy listening music\""
     }
   }
 }
