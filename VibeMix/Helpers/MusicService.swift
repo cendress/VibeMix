@@ -46,11 +46,6 @@ struct SpotifyRecommendationsResponse: Codable {
   let tracks: [SpotifyTrack]
 }
 
-// Model for the top-level response from a Spotify track search
-struct SpotifySearchResponse: Codable {
-  let tracks: SpotifyTracksResponse
-}
-
 // Encapsulates the track list part of the search response
 struct SpotifyTracksResponse: Codable {
   let items: [SpotifyTrack]
@@ -108,7 +103,7 @@ class MusicService {
     task.resume()
   }
   
-  // Converts a MoodOption to a suitable search query for Spotify
+  // Converts a MoodOption to a suitable genre for Spotify
   private func moodToSearchQuery(_ mood: MoodOption) -> String {
     switch mood {
     case .happy:
