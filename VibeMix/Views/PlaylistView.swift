@@ -52,29 +52,30 @@ struct PlaylistView: View {
           }
           // Have the list extend to fit all available space
           .frame(minHeight: 0, maxHeight: .infinity)
-          // Fetch songs when the view appears
-          .onAppear {
-            MusicService.shared.fetchSongs(forMood: mood) { result in
-              switch result {
-              case .success(let fetchedTracks):
-                self.tracks = fetchedTracks
-                self.isLoading = false
-              case .failure:
-                self.showError = true
-                self.isLoading = false
-              }
-            }
-          }
-          // Show errors if songs can't be fetched
-          .alert("Error", isPresented: $showError) {
-            Button("OK", role: .cancel) { }
-          } message: {
-            Text("Could not load songs. Please check your internet connection.")
-          }
           
           PlaylistViewButtons()
             .frame(height: geometry.size.height * 0.2)
         }
+      }
+      // Fetch songs when the view appears
+      .onAppear {
+        MusicService.shared.fetchSongs(forMood: mood) { result in
+          switch result {
+          case .success(let fetchedTracks):
+            self.tracks = fetchedTracks
+            self.isLoading = false
+          case .failure:
+            self.showError = true
+            self.isLoading = false
+          }
+        }
+      }
+      
+      // Show errors if songs can't be fetched
+      .alert("Error", isPresented: $showError) {
+        Button("OK", role: .cancel) { }
+      } message: {
+        Text("Could not load songs. Please check your internet connection.")
       }
     }
   }
