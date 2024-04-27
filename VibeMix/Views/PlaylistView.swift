@@ -12,6 +12,7 @@ struct PlaylistView: View {
   var mood: MoodOption
   @State private var tracks: [SpotifyTrack] = []
   @State private var showError = false
+  @State private var isLoading = true
   
   var body: some View {
     GeometryReader { geometry in
