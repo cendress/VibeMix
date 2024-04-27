@@ -14,6 +14,7 @@ struct SpotifyTrack: Codable {
   let name: String
   let id: String
   let album: Album
+  let previewUrl: String?
   
   // Computed property to extract the primary artist's name from the album's artist list
   var artistName: String {
