@@ -15,6 +15,7 @@ struct PlaylistView: View {
   @State private var showError = false
   @State private var isLoading = true
   @State private var audioPlayer: AVAudioPlayer?
+  @State private var playlistName = ""
   
   @Environment(\.managedObjectContext) private var viewContext
   
