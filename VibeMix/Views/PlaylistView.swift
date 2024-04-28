@@ -16,6 +16,7 @@ struct PlaylistView: View {
   @State private var isLoading = true
   @State private var audioPlayer: AVAudioPlayer?
   @State private var playlistName = ""
+  @State private var showingAlert = false
   
   @Environment(\.managedObjectContext) private var viewContext
   
@@ -67,10 +68,8 @@ struct PlaylistView: View {
         }
       }
       
-      PlaylistViewButtons(reshuffleAction: {
-        fetchSongs()
-      }, saveAction: {
-        savePlaylist()
+      PlaylistViewButtons(reshuffleAction: fetchSongs, saveAction: {
+        self.showingAlert = true
       })
     }
     // Fetch songs when the view appears
@@ -93,23 +92,30 @@ struct PlaylistView: View {
     } message: {
       Text("Could not load songs. Please check your internet connection.")
     }
+    
+    .alert("Save Playlist", isPresented: $showingAlert) {
+      Button("Save", action: savePlaylist)
+      Button("Cancel", role: .cancel) {}
+    } message: {
+      TextField("Enter playlist name", text: $playlistName)
+    }
   }
   
   private func savePlaylist() {
-      let newPlaylist = Playlist(context: viewContext)
-      newPlaylist.createdAt = Date()
-      newPlaylist.mood = mood.rawValue  
-      newPlaylist.playlistID = UUID().uuidString
-
-      do {
-          try viewContext.save()
-          print("Playlist saved successfully")
-      } catch {
-          let nsError = error as NSError
-          fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-      }
+    let newPlaylist = Playlist(context: viewContext)
+    newPlaylist.createdAt = Date()
+    newPlaylist.mood = mood.rawValue
+    newPlaylist.playlistID = UUID().uuidString
+    newPlaylist.name = playlistName.trimmingCharacters(in: .whitespacesAndNewlines)
+    
+    do {
+      try viewContext.save()
+      print("Playlist saved successfully")
+    } catch {
+      let nsError = error as NSError
+      fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+    }
   }
-
   
   private func fetchSongs() {
     if let player = audioPlayer, player.isPlaying {
@@ -133,7 +139,7 @@ struct PlaylistView: View {
   }
   
   private func playPausePreview(track: SpotifyTrack) {
-    guard let previewUrl = track.previewUrl, let url = URL(string: previewUrl) else { 
+    guard let previewUrl = track.previewUrl, let url = URL(string: previewUrl) else {
       print("Invalid URL or no preview available")
       return
     }
