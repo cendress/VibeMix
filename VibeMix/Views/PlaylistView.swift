@@ -70,7 +70,6 @@ struct PlaylistView: View {
     .sheet(isPresented: $showingNameSheet, onDismiss: savePlaylist) {
       VStack(alignment: .leading, spacing: 30) {
         HStack {
-          Spacer()
           Button(action: {
             self.showingNameSheet = false
           }) {
@@ -78,8 +77,6 @@ struct PlaylistView: View {
               .imageScale(.large)
               .foregroundColor(.gray)
           }
-          .padding(.trailing, 20)
-          .padding(.top, 10)
         }
         
         VStack(spacing: 20) {
