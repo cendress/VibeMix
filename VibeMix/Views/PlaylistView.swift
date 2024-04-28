@@ -16,6 +16,8 @@ struct PlaylistView: View {
   @State private var isLoading = true
   @State private var audioPlayer: AVAudioPlayer?
   
+  @Environment(\.managedObjectContext) private var viewContext
+  
   var body: some View {
     VStack {
       if isLoading {
@@ -65,9 +67,9 @@ struct PlaylistView: View {
       }
       
       PlaylistViewButtons(reshuffleAction: {
-        fetchSongs()  // This will trigger a reshuffle
+        fetchSongs()
       }, saveAction: {
-        // Code to save the playlist goes here
+        savePlaylist()
       })
     }
     // Fetch songs when the view appears
@@ -92,6 +94,22 @@ struct PlaylistView: View {
     }
   }
   
+  private func savePlaylist() {
+      let newPlaylist = Playlist(context: viewContext)
+      newPlaylist.createdAt = Date()
+      newPlaylist.mood = mood.rawValue  
+      newPlaylist.playlistID = UUID().uuidString
+
+      do {
+          try viewContext.save()
+          print("Playlist saved successfully")
+      } catch {
+          let nsError = error as NSError
+          fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+      }
+  }
+
+  
   private func fetchSongs() {
     if let player = audioPlayer, player.isPlaying {
       player.stop()
@@ -114,16 +132,21 @@ struct PlaylistView: View {
   }
   
   private func playPausePreview(track: SpotifyTrack) {
-    guard let previewUrl = track.previewUrl, let url = URL(string: previewUrl) else { return }
+    guard let previewUrl = track.previewUrl, let url = URL(string: previewUrl) else { 
+      print("Invalid URL or no preview available")
+      return
+    }
     
     if let player = audioPlayer, player.isPlaying {
       player.stop()
       self.audioPlayer = nil
+      print("Audio stopped")
     } else {
       do {
         let soundData = try Data(contentsOf: url)
         audioPlayer = try AVAudioPlayer(data: soundData)
         audioPlayer?.play()
+        print("Audio playing")
       } catch {
         print("Playback failed.")
       }

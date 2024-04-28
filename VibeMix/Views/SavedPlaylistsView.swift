@@ -5,6 +5,7 @@
 //  Created by Christopher Endress on 3/23/24.
 //
 
+import CoreData
 import SwiftUI
 
 struct SavedPlaylistsView: View {
