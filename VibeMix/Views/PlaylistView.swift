@@ -15,7 +15,7 @@ struct PlaylistView: View {
   @State private var isLoading = true
   @State private var audioPlayer: AVAudioPlayer?
   @State private var playlistName = ""
-  @State private var showingNameInput = false
+  @State private var showingNameSheet = false
   
   @Environment(\.managedObjectContext) private var viewContext
   
@@ -64,15 +64,15 @@ struct PlaylistView: View {
       }
       
       PlaylistViewButtons(reshuffleAction: fetchSongs, saveAction: {
-        self.showingNameInput = true
+        self.showingNameSheet = true
       })
     }
-    .sheet(isPresented: $showingNameInput, onDismiss: savePlaylist) {
+    .sheet(isPresented: $showingNameSheet, onDismiss: savePlaylist) {
       VStack(alignment: .leading, spacing: 30) {
         HStack {
           Spacer()
           Button(action: {
-            self.showingNameInput = false
+            self.showingNameSheet = false
           }) {
             Image(systemName: "xmark.circle.fill")
               .imageScale(.large)
@@ -94,7 +94,7 @@ struct PlaylistView: View {
             .shadow(radius: 1)
           
           Button(action: {
-            self.showingNameInput = false
+            self.showingNameSheet = false
           }) {
             Text("Save")
               .foregroundColor(.white)
