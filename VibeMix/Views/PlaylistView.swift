@@ -68,37 +68,52 @@ struct PlaylistView: View {
       })
     }
     .sheet(isPresented: $showingNameInput, onDismiss: savePlaylist) {
-      VStack(spacing: 30) {
-        Text("Enter Playlist Name")
-          .font(.headline)
-          .padding(.top, 20)
-        
-        TextField("Playlist Name", text: $playlistName)
-//          .textFieldStyle(RoundedBorderTextFieldStyle())
-          .padding()
-          .background(Color(UIColor.systemBackground))
-          .cornerRadius(8)
-          .shadow(radius: 1)
-        
-        Button(action: {
-          self.showingNameInput = false
-        }) {
-          Text("Save")
-            .foregroundColor(.white)
-            .frame(maxWidth: .infinity)
-            .padding()
-            .background(Color("AppColor"))
-            .cornerRadius(12)
+      VStack(alignment: .leading, spacing: 30) {
+        HStack {
+          Spacer()
+          Button(action: {
+            self.showingNameInput = false
+          }) {
+            Image(systemName: "xmark.circle.fill")
+              .imageScale(.large)
+              .foregroundColor(.gray)
+          }
+          .padding(.trailing, 20)
+          .padding(.top, 10)
         }
-        .buttonStyle(PlainButtonStyle())
-        .padding(.horizontal)
+        
+        VStack(spacing: 20) {
+          Text("Enter Playlist Name")
+            .font(.headline)
+            .padding(.horizontal)
+          
+          TextField("Playlist Name", text: $playlistName)
+            .padding()
+            .background(Color(UIColor.systemBackground))
+            .cornerRadius(8)
+            .shadow(radius: 1)
+          
+          Button(action: {
+            self.showingNameInput = false
+          }) {
+            Text("Save")
+              .foregroundColor(.white)
+              .frame(maxWidth: .infinity)
+              .padding()
+              .background(Color("AppColor"))
+              .cornerRadius(12)
+          }
+          .buttonStyle(PlainButtonStyle())
+          .padding(.horizontal)
+        }
+        .frame(maxWidth: 300)
+        .padding()
+        .background(Color(UIColor.secondarySystemBackground))
+        .cornerRadius(12)
+        .shadow(radius: 10)
       }
-      .frame(maxWidth: 300)
-      .padding()
-      .background(Color(UIColor.secondarySystemBackground))
-      .cornerRadius(12)
-      .shadow(radius: 10)
     }
+    
     .onAppear {
       MusicService.shared.fetchSongs(forMood: mood) { result in
         switch result {
