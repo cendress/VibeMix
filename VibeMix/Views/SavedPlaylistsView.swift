@@ -20,16 +20,8 @@ struct SavedPlaylistsView: View {
     NavigationView {
       List {
         ForEach(playlists, id: \.self) { playlist in
-          VStack(alignment: .leading, spacing: 8) {
-            if let name = playlist.name, !name.isEmpty {
-              Text(name)
-                .font(.headline)
-            }
-            Text("Mood: \(playlist.mood ?? "N/A")")
-            Text("\(playlist.createdAt ?? Date(), formatter: itemFormatter)")
-              .font(.subheadline)
-          }
-          .padding(.vertical, 4)
+          PlaylistRowView(playlist: playlist)
+            .padding(.vertical, 8)
         }
         .onDelete(perform: deletePlaylists)
       }
@@ -56,13 +48,6 @@ struct SavedPlaylistsView: View {
     }
   }
 }
-
-private let itemFormatter: DateFormatter = {
-  let formatter = DateFormatter()
-  formatter.dateStyle = .long
-  formatter.timeStyle = .none
-  return formatter
-}()
 
 #Preview {
   SavedPlaylistsView()
