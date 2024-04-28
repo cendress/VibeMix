@@ -9,30 +9,26 @@ import AVFoundation
 import SwiftUI
 
 struct PlaylistView: View {
-  // Variable to determine what mood to fetch
   var mood: MoodOption
   @State private var tracks: [SpotifyTrack] = []
   @State private var showError = false
   @State private var isLoading = true
   @State private var audioPlayer: AVAudioPlayer?
   @State private var playlistName = ""
-  @State private var showingAlert = false
+  @State private var showingNameInput = false
   
   @Environment(\.managedObjectContext) private var viewContext
   
   var body: some View {
     VStack {
       if isLoading {
-        // Show a loading indicator while the tracks are loading
         ProgressView()
           .scaleEffect(1.5)
           .progressViewStyle(CircularProgressViewStyle(tint: Color("AppColor")))
           .frame(maxWidth: .infinity, maxHeight: .infinity)
       } else {
-        // Create a list displaying tracks
         List(tracks, id: \.id) { track in
           HStack {
-            // Display an image if the URL exists. If not, display a placeholder
             if let imageUrl = track.imageUrl {
               AsyncImage(url: imageUrl) { image in
                 image.resizable()
@@ -46,7 +42,6 @@ struct PlaylistView: View {
                 .frame(width: 50, height: 50)
             }
             
-            // Display track name and artist
             VStack(alignment: .leading) {
               Text(track.name)
                 .fontWeight(.bold)
@@ -69,10 +64,41 @@ struct PlaylistView: View {
       }
       
       PlaylistViewButtons(reshuffleAction: fetchSongs, saveAction: {
-        self.showingAlert = true
+        self.showingNameInput = true
       })
     }
-    // Fetch songs when the view appears
+    .sheet(isPresented: $showingNameInput, onDismiss: savePlaylist) {
+      VStack(spacing: 30) {
+        Text("Enter Playlist Name")
+          .font(.headline)
+          .padding(.top, 20)
+        
+        TextField("Playlist Name", text: $playlistName)
+//          .textFieldStyle(RoundedBorderTextFieldStyle())
+          .padding()
+          .background(Color(UIColor.systemBackground))
+          .cornerRadius(8)
+          .shadow(radius: 1)
+        
+        Button(action: {
+          self.showingNameInput = false
+        }) {
+          Text("Save")
+            .foregroundColor(.white)
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(Color("AppColor"))
+            .cornerRadius(12)
+        }
+        .buttonStyle(PlainButtonStyle())
+        .padding(.horizontal)
+      }
+      .frame(maxWidth: 300)
+      .padding()
+      .background(Color(UIColor.secondarySystemBackground))
+      .cornerRadius(12)
+      .shadow(radius: 10)
+    }
     .onAppear {
       MusicService.shared.fetchSongs(forMood: mood) { result in
         switch result {
@@ -85,19 +111,10 @@ struct PlaylistView: View {
         }
       }
     }
-    
-    // Show errors if songs can't be fetched
     .alert("Error", isPresented: $showError) {
       Button("OK", role: .cancel) { }
     } message: {
       Text("Could not load songs. Please check your internet connection.")
-    }
-    
-    .alert("Save Playlist", isPresented: $showingAlert) {
-      Button("Save", action: savePlaylist)
-      Button("Cancel", role: .cancel) {}
-    } message: {
-      TextField("Enter playlist name", text: $playlistName)
     }
   }
   
@@ -110,7 +127,6 @@ struct PlaylistView: View {
     
     do {
       try viewContext.save()
-      print("Playlist saved successfully")
     } catch {
       let nsError = error as NSError
       fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
@@ -161,7 +177,6 @@ struct PlaylistView: View {
   }
 }
 
-// Define buttons view to perform actions
 struct PlaylistViewButtons: View {
   var reshuffleAction: () -> Void
   var saveAction: () -> Void

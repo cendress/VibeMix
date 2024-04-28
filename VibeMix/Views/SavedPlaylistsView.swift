@@ -27,6 +27,7 @@ struct SavedPlaylistsView: View {
             }
             Text("Mood: \(playlist.mood ?? "N/A")")
             Text("\(playlist.createdAt ?? Date(), formatter: itemFormatter)")
+              .font(.subheadline)
           }
           .padding(.vertical, 4)
         }
