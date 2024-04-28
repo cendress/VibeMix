@@ -15,22 +15,15 @@ struct PlaylistRowView: View {
       if let name = playlist.name, !name.isEmpty {
         Text(name)
           .font(.headline)
-          .foregroundColor(.primary)
-          .lineLimit(1)
-          .truncationMode(.tail)
       }
       
       Text("Mood: \(playlist.mood ?? "N/A")")
         .font(.subheadline)
         .foregroundColor(.secondary)
-        .lineLimit(1)
-        .truncationMode(.tail)
       
       Text("\(playlist.createdAt ?? Date(), formatter: itemFormatter)")
         .font(.subheadline)
         .foregroundColor(.secondary)
-        .lineLimit(1)
-        .truncationMode(.tail)
     }
   }
   
