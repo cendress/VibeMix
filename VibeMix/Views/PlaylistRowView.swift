@@ -25,6 +25,7 @@ struct PlaylistRowView: View {
         .font(.subheadline)
         .foregroundColor(.secondary)
     }
+    
   }
   
   private let itemFormatter: DateFormatter = {

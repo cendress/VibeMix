@@ -59,6 +59,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9D3446E92BF6B7CF00132FD3 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				9DC98F5E2BAF32C8006FA21F /* MusicService.swift */,
+				9D48CC182BAF7F8200CEF85F /* SpotifyAuthService.swift */,
+				9DC98F602BAF4BC2006FA21F /* TokenProvider.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		9D3446EA2BF6B7E400132FD3 /* Persistence */ = {
+			isa = PBXGroup;
+			children = (
+				9DC98F472BAF0584006FA21F /* Persistence.swift */,
+			);
+			path = Persistence;
+			sourceTree = "<group>";
+		};
+		9D3446EB2BF6B7F100132FD3 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				9DC98F692BAF57F7006FA21F /* OnboardingView.swift */,
+				9DC98F6B2BAF5967006FA21F /* UIOnboardingHelper.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		9DC98F322BAF0581006FA21F = {
 			isa = PBXGroup;
 			children = (
@@ -100,12 +127,9 @@
 		9DC98F6D2BAF5977006FA21F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				9DC98F5E2BAF32C8006FA21F /* MusicService.swift */,
-				9D48CC182BAF7F8200CEF85F /* SpotifyAuthService.swift */,
-				9DC98F602BAF4BC2006FA21F /* TokenProvider.swift */,
-				9DC98F472BAF0584006FA21F /* Persistence.swift */,
-				9DC98F692BAF57F7006FA21F /* OnboardingView.swift */,
-				9DC98F6B2BAF5967006FA21F /* UIOnboardingHelper.swift */,
+				9D3446E92BF6B7CF00132FD3 /* Networking */,
+				9D3446EA2BF6B7E400132FD3 /* Persistence */,
+				9D3446EB2BF6B7F100132FD3 /* Onboarding */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";

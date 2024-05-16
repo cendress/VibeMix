@@ -11,7 +11,7 @@ import SwiftUI
 enum MoodOption: String, CaseIterable {
   case happy = "Happy", sad = "Sad", energetic = "Energetic", relaxed = "Relaxed"
   
-  // Computed property that returns a string for all mood options
+  // Computed property that returns a string description for all mood options
   var description: String {
     switch self {
     case .happy:
@@ -22,6 +22,19 @@ enum MoodOption: String, CaseIterable {
       return "I'm ready to take on the world!"
     case .relaxed:
       return "I'm in a chill, laid-back mood."
+    }
+  }
+  
+  var symbol: String {
+    switch self {
+    case .happy:
+      return "sun.max.fill"
+    case .sad:
+      return "cloud.rain.fill"
+    case .energetic:
+      return "bolt.fill"
+    case .relaxed:
+      return "leaf.fill"
     }
   }
 }
