@@ -71,7 +71,7 @@ struct MoodPromptView: View {
               }
               .padding()
               // Make the button width fill the available space
-              .frame(maxWidth: .infinity)
+              .frame(maxWidth: .infinity, maxHeight: 200)
               // Change the background and text color based on selection
               .background(self.selectedMood == mood ? Color("AppColor") : Color.white)
               .foregroundColor(self.selectedMood == mood ? Color.white : Color("AppColor"))
