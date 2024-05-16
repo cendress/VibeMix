@@ -14,13 +14,17 @@ enum MoodOption: String, CaseIterable {
   var description: String {
     switch self {
     case .happy:
-      return "I'm feeling happy and upbeat."
+      return "Happy"
+      //      return "I'm feeling happy and upbeat."
     case .sad:
-      return "I'm feeling a bit down."
+      return "Sad"
+      //      return "I'm feeling a bit down."
     case .energetic:
-      return "I'm ready to take on the world!"
+      return "Energetic"
+      //      return "I'm ready to take on the world!"
     case .relaxed:
-      return "I'm in a chill, laid-back mood."
+      return "Relaxed"
+      //      return "I'm in a chill, laid-back mood."
     }
   }
   
@@ -65,9 +69,14 @@ struct MoodPromptView: View {
               self.selectedMood = mood
               self.isButtonSelected = false
             }) {
-              HStack {
+              VStack {
                 Image(systemName: mood.symbol)
+                  .resizable()
+                  .aspectRatio(contentMode: .fit)
+                  .frame(width: 50, height: 50)
+                
                 Text(mood.description)
+                  .multilineTextAlignment(.center)
               }
               .padding()
               // Make the button width fill the available space
