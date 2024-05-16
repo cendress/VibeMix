@@ -7,11 +7,10 @@
 
 import SwiftUI
 
-/* CaseIterable protocol allows all items within a type to be iterated over in a similar behavior to an array */
 enum MoodOption: String, CaseIterable {
   case happy = "Happy", sad = "Sad", energetic = "Energetic", relaxed = "Relaxed"
   
-  // Computed property that returns a string description for all mood options
+  // Computed property that returns a string for all mood options
   var description: String {
     switch self {
     case .happy:
@@ -25,6 +24,7 @@ enum MoodOption: String, CaseIterable {
     }
   }
   
+  // Computed property that returns an SF Symbol name for each mood option
   var symbol: String {
     switch self {
     case .happy:
@@ -43,6 +43,11 @@ struct MoodPromptView: View {
   @State private var selectedMood: MoodOption?
   @State private var isButtonSelected = false
   
+  let columns = [
+    GridItem(.flexible()),
+    GridItem(.flexible())
+  ]
+  
   var body: some View {
     NavigationView {
       VStack {
@@ -52,29 +57,33 @@ struct MoodPromptView: View {
           .font(.title)
           .padding(.bottom, 20)
         
-        // Iterate over all mood options and create a button for each
-        ForEach(MoodOption.allCases, id: \.self) { mood in
-          Button(action: {
-            // Set the selected mood and reset button selection when buttons are tapped
-            self.selectedMood = mood
-            self.isButtonSelected = false
-          }) {
-            Text(mood.description)
+        // LazyVGrid for creating a grid layout
+        LazyVGrid(columns: columns, spacing: 20) {
+          ForEach(MoodOption.allCases, id: \.self) { mood in
+            Button(action: {
+              // Set the selected mood and reset button selection when buttons are tapped
+              self.selectedMood = mood
+              self.isButtonSelected = false
+            }) {
+              HStack {
+                Image(systemName: mood.symbol)
+                Text(mood.description)
+              }
               .padding()
-            // Make the button width fill the available space
+              // Make the button width fill the available space
               .frame(maxWidth: .infinity)
-            // Change the background and text color based on selection
+              // Change the background and text color based on selection
               .background(self.selectedMood == mood ? Color("AppColor") : Color.white)
               .foregroundColor(self.selectedMood == mood ? Color.white : Color("AppColor"))
+              .cornerRadius(25)
+            }
+            // Style the button with a border and rounded corners
+            .overlay(
+              RoundedRectangle(cornerRadius: 20)
+                .stroke(selectedMood == mood ? Color.clear : Color("AppColor"), lineWidth: 2)
+            )
           }
-          // Style the button with a border and rounded corners
-          .overlay(
-            RoundedRectangle(cornerRadius: 25)
-              .stroke(selectedMood == mood ? Color.clear : Color("AppColor"), lineWidth: 2)
-          )
-          .cornerRadius(25)
         }
-        .padding(.vertical, 5)
         .padding(.horizontal, 20)
         
         Spacer()
@@ -86,13 +95,15 @@ struct MoodPromptView: View {
             self.isButtonSelected = true
           }
         }) {
-          Text("Find My Vibe")
-            .bold()
-            .frame(maxWidth: .infinity)
-            .padding()
-            .background(Color("AppColor"))
-            .foregroundColor(.white)
-            .cornerRadius(10)
+          HStack {
+            Image(systemName: "music.note.list")
+            Text("Find My Vibe")
+          }
+          .frame(maxWidth: .infinity)
+          .padding()
+          .background(Color("AppColor"))
+          .foregroundColor(.white)
+          .cornerRadius(10)
         }
         .padding(.horizontal, 100)
         .disabled(selectedMood == nil)
@@ -107,7 +118,6 @@ struct MoodPromptView: View {
         Spacer()
         Spacer()
       }
-      
       .navigationTitle("New Playlist")
     }
   }
