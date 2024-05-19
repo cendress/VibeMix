@@ -6,30 +6,38 @@
 //
 
 import SwiftUI
-// Library used to create onboarding screens
 import UIOnboarding
+
+// Model to act as an observable object to hold the index of the selected tab
+class TabSelection: ObservableObject {
+  @Published var selectedTab: Int = 0
+}
 
 struct ContentView: View {
   // Ensure onboarding screens are shown only once by using UserDefaults
   @State private var showingOnboarding = !UserDefaults.standard.bool(forKey: "hasCompletedOnboarding")
+  @EnvironmentObject var tabSelection: TabSelection
   
   var body: some View {
     // Creates tab bar
-    TabView {
+    TabView(selection: $tabSelection.selectedTab) {
       MoodPromptView()
         .tabItem {
           Image(systemName: "wand.and.stars")
         }
+        .tag(0)
       
       SavedPlaylistsView()
         .tabItem {
           Image(systemName: "heart")
         }
+        .tag(1)
       
       SettingsView()
         .tabItem {
           Image(systemName: "gear")
         }
+        .tag(2)
     }
     .accentColor(Color("AppColor"))
     .fullScreenCover(isPresented: $showingOnboarding) {

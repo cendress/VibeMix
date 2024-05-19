@@ -16,9 +16,9 @@ struct PlaylistView: View {
   @State private var audioPlayer: AVAudioPlayer?
   @State private var playlistName = ""
   @State private var showingNameSheet = false
-  @State private var navigateToSavedPlaylists = false
   
   @Environment(\.managedObjectContext) private var viewContext
+  @EnvironmentObject var tabSelection: TabSelection
   
   var body: some View {
     VStack {
@@ -140,6 +140,7 @@ struct PlaylistView: View {
     
     do {
       try viewContext.save()
+      self.tabSelection.selectedTab = 1
     } catch {
       let nsError = error as NSError
       fatalError("Unresolved error \(nsError), \(nsError.userInfo)")

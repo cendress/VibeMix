@@ -11,6 +11,7 @@ import SwiftUI
 struct VibeMixApp: App {
   // Shared instance of PersistenceController
   let persistenceController = PersistenceController.shared
+  @StateObject var tabSelection = TabSelection() 
   
   var body: some Scene {
     WindowGroup {
@@ -18,6 +19,7 @@ struct VibeMixApp: App {
       // Inject the managed object context into the environment of ContentView
       // This allows ContentView and any of its children to access the managed object context for Core Data operations
         .environment(\.managedObjectContext, persistenceController.container.viewContext)
+        .environmentObject(tabSelection)
     }
   }
 }
