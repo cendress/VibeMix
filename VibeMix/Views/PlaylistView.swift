@@ -16,6 +16,7 @@ struct PlaylistView: View {
   @State private var audioPlayer: AVAudioPlayer?
   @State private var playlistName = ""
   @State private var showingNameSheet = false
+  @State private var navigateToSavedPlaylists = false
   
   @Environment(\.managedObjectContext) private var viewContext
   
