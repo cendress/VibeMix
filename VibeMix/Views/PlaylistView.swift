@@ -114,15 +114,8 @@ struct PlaylistView: View {
     }
     
     .onAppear {
-      MusicService.shared.fetchSongs(forMood: mood) { result in
-        switch result {
-        case .success(let fetchedTracks):
-          self.tracks = fetchedTracks
-          self.isLoading = false
-        case .failure:
-          self.showError = true
-          self.isLoading = false
-        }
+      if !songsFetched {
+        fetchSongs()
       }
     }
     .alert("Error", isPresented: $showError) {
@@ -161,6 +154,7 @@ struct PlaylistView: View {
         switch result {
         case .success(let fetchedTracks):
           self.tracks = fetchedTracks
+          self.songsFetched = true
         case .failure:
           self.showError = true
         }
