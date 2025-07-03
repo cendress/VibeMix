@@ -17,16 +17,18 @@ struct MoodPromptView: View {
   ]
   
   var body: some View {
-    NavigationView {
-      VStack {
+    NavigationStack {
+        VStack {
         Spacer()
-        Spacer()
+          
         Text("How are you feeling?")
           .font(.title)
-          .padding(.bottom, 20)
+          .fontWeight(.semibold)
+            
+            Spacer()
         
         // LazyVGrid for creating a grid layout
-        LazyVGrid(columns: columns, spacing: 20) {
+        LazyVGrid(columns: columns, spacing: 24) {
           ForEach(MoodOption.allCases, id: \.self) { mood in
             Button(action: {
               // Set the selected mood and reset button selection when buttons are tapped
@@ -40,12 +42,10 @@ struct MoodPromptView: View {
                   .frame(width: 50, height: 50)
                 
                 Text(mood.description)
-                  .multilineTextAlignment(.center)
+                      .font(.headline)
               }
               .padding()
-              // Make the button width fill the available space
               .frame(maxWidth: .infinity, maxHeight: 200)
-              // Change the background and text color based on selection
               .background(self.selectedMood == mood ? Color("AppColor") : Color.white)
               .foregroundColor(self.selectedMood == mood ? Color.white : Color("AppColor"))
               .cornerRadius(25)
@@ -56,8 +56,9 @@ struct MoodPromptView: View {
                 .stroke(selectedMood == mood ? Color.clear : Color("AppColor"), lineWidth: 2)
             )
           }
+          .padding(.horizontal, 10)
         }
-        .padding(.horizontal, 20)
+        .padding(.horizontal, 16)
         
         Spacer()
         
@@ -71,6 +72,7 @@ struct MoodPromptView: View {
           HStack {
             Image(systemName: "music.note.list")
             Text("Find My Vibe")
+                  .font(.headline)
           }
           .frame(maxWidth: .infinity)
           .padding()
@@ -88,7 +90,6 @@ struct MoodPromptView: View {
           }
         }
         
-        Spacer()
         Spacer()
       }
       .navigationTitle("New Playlist")
