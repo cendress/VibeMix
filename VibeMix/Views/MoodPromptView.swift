@@ -15,16 +15,12 @@ enum MoodOption: String, CaseIterable {
     switch self {
     case .happy:
       return "Happy"
-      //      return "I'm feeling happy and upbeat."
     case .sad:
       return "Sad"
-      //      return "I'm feeling a bit down."
     case .energetic:
       return "Energetic"
-      //      return "I'm ready to take on the world!"
     case .relaxed:
       return "Relaxed"
-      //      return "I'm in a chill, laid-back mood."
     }
   }
   
