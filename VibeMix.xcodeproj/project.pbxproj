@@ -10,7 +10,7 @@
 		9D15B4112BDE873000288CED /* PlaylistRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D15B4102BDE873000288CED /* PlaylistRowView.swift */; };
 		9D48CC192BAF7F8200CEF85F /* SpotifyAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D48CC182BAF7F8200CEF85F /* SpotifyAuthService.swift */; };
 		9DC98F3F2BAF0581006FA21F /* VibeMixApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC98F3E2BAF0581006FA21F /* VibeMixApp.swift */; };
-		9DC98F412BAF0581006FA21F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC98F402BAF0581006FA21F /* ContentView.swift */; };
+		9DC98F412BAF0581006FA21F /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC98F402BAF0581006FA21F /* TabBarView.swift */; };
 		9DC98F432BAF0584006FA21F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DC98F422BAF0584006FA21F /* Assets.xcassets */; };
 		9DC98F462BAF0584006FA21F /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DC98F452BAF0584006FA21F /* Preview Assets.xcassets */; };
 		9DC98F482BAF0584006FA21F /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC98F472BAF0584006FA21F /* Persistence.swift */; };
@@ -30,7 +30,7 @@
 		9D48CC182BAF7F8200CEF85F /* SpotifyAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotifyAuthService.swift; sourceTree = "<group>"; };
 		9DC98F3B2BAF0581006FA21F /* VibeMix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VibeMix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DC98F3E2BAF0581006FA21F /* VibeMixApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeMixApp.swift; sourceTree = "<group>"; };
-		9DC98F402BAF0581006FA21F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		9DC98F402BAF0581006FA21F /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
 		9DC98F422BAF0584006FA21F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9DC98F452BAF0584006FA21F /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		9DC98F472BAF0584006FA21F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
@@ -135,7 +135,7 @@
 		9DC98F6E2BAF5986006FA21F /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				9DC98F402BAF0581006FA21F /* ContentView.swift */,
+				9DC98F402BAF0581006FA21F /* TabBarView.swift */,
 				9DC98F512BAF1001006FA21F /* MoodPromptView.swift */,
 				9DC98F532BAF14D1006FA21F /* PlaylistView.swift */,
 				9DC98F702BAF6B9D006FA21F /* SavedPlaylistsView.swift */,
@@ -235,7 +235,7 @@
 				9DC98F612BAF4BC2006FA21F /* TokenProvider.swift in Sources */,
 				9DC98F6A2BAF57F7006FA21F /* OnboardingView.swift in Sources */,
 				9DC98F482BAF0584006FA21F /* Persistence.swift in Sources */,
-				9DC98F412BAF0581006FA21F /* ContentView.swift in Sources */,
+				9DC98F412BAF0581006FA21F /* TabBarView.swift in Sources */,
 				9DC98F3F2BAF0581006FA21F /* VibeMixApp.swift in Sources */,
 				9D15B4112BDE873000288CED /* PlaylistRowView.swift in Sources */,
 				9D48CC192BAF7F8200CEF85F /* SpotifyAuthService.swift in Sources */,

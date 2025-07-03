@@ -13,7 +13,7 @@ class TabSelection: ObservableObject {
   @Published var selectedTab: Int = 0
 }
 
-struct ContentView: View {
+struct TabBarView: View {
   // Ensure onboarding screens are shown only once by using UserDefaults
   @State private var showingOnboarding = !UserDefaults.standard.bool(forKey: "hasCompletedOnboarding")
   @EnvironmentObject var tabSelection: TabSelection
@@ -48,6 +48,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
-    ContentView.init()
+    TabBarView.init()
   }
 }
