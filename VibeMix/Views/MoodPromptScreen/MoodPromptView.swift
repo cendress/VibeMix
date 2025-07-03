@@ -26,32 +26,16 @@ struct MoodPromptView: View {
                 
                 Spacer()
                 
-                LazyVGrid(columns: columns, spacing: 24) {
+                LazyVGrid(columns: columns, spacing: 20) {
                     ForEach(MoodOption.allCases, id: \.self) { mood in
-                        Button(action: {
+                        MoodOptionButtonView(
+                            mood: mood,
+                            isSelected: selectedMood == mood
+                        ) {
                             selectedMood = mood
-                        }) {
-                            VStack {
-                                Image(systemName: mood.symbol)
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: 50, height: 50)
-                                
-                                Text(mood.description)
-                                    .font(.headline)
-                            }
-                            .padding()
-                            .frame(maxWidth: .infinity, maxHeight: 200)
-                            .background(selectedMood == mood ? Color("AppColor") : Color.white)
-                            .foregroundColor(selectedMood == mood ? Color.white : Color("AppColor"))
-                            .cornerRadius(25)
                         }
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 20)
-                                .stroke(selectedMood == mood ? Color.clear : Color("AppColor"), lineWidth: 2)
-                        )
                     }
-                    .padding(.horizontal, 16)
+                    .padding(.horizontal, 8)
                 }
                 .padding(.horizontal, 16)
                 
