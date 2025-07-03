@@ -32,12 +32,6 @@ struct ContentView: View {
           Image(systemName: "heart")
         }
         .tag(1)
-      
-      SettingsView()
-        .tabItem {
-          Image(systemName: "gear")
-        }
-        .tag(2)
     }
     .accentColor(Color("AppColor"))
     .fullScreenCover(isPresented: $showingOnboarding) {
