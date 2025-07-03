@@ -86,6 +86,31 @@
 			path = Onboarding;
 			sourceTree = "<group>";
 		};
+		9D4E76192E17400F005AB4C2 /* MoodPromptScreen */ = {
+			isa = PBXGroup;
+			children = (
+				9DC98F512BAF1001006FA21F /* MoodPromptView.swift */,
+			);
+			path = MoodPromptScreen;
+			sourceTree = "<group>";
+		};
+		9D4E761A2E17401C005AB4C2 /* PlaylistScreen */ = {
+			isa = PBXGroup;
+			children = (
+				9DC98F532BAF14D1006FA21F /* PlaylistView.swift */,
+			);
+			path = PlaylistScreen;
+			sourceTree = "<group>";
+		};
+		9D4E761B2E17402C005AB4C2 /* SavedPlaylistScreen */ = {
+			isa = PBXGroup;
+			children = (
+				9D15B4102BDE873000288CED /* PlaylistRowView.swift */,
+				9DC98F702BAF6B9D006FA21F /* SavedPlaylistsView.swift */,
+			);
+			path = SavedPlaylistScreen;
+			sourceTree = "<group>";
+		};
 		9DC98F322BAF0581006FA21F = {
 			isa = PBXGroup;
 			children = (
@@ -138,10 +163,9 @@
 			isa = PBXGroup;
 			children = (
 				9DC98F402BAF0581006FA21F /* TabBarView.swift */,
-				9DC98F512BAF1001006FA21F /* MoodPromptView.swift */,
-				9DC98F532BAF14D1006FA21F /* PlaylistView.swift */,
-				9DC98F702BAF6B9D006FA21F /* SavedPlaylistsView.swift */,
-				9D15B4102BDE873000288CED /* PlaylistRowView.swift */,
+				9D4E76192E17400F005AB4C2 /* MoodPromptScreen */,
+				9D4E761A2E17401C005AB4C2 /* PlaylistScreen */,
+				9D4E761B2E17402C005AB4C2 /* SavedPlaylistScreen */,
 			);
 			path = Views;
 			sourceTree = "<group>";
