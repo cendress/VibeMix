@@ -13,7 +13,10 @@ struct MoodOptionButtonView: View {
     let action: () -> Void
     
     var body: some View {
-        Button(action: action) {
+        Button(action: {
+            UIImpactFeedbackGenerator(style: .light).impactOccurred()
+            action()
+        }) {
             VStack {
                 Image(systemName: mood.symbol)
                     .resizable()
