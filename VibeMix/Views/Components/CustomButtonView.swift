@@ -23,10 +23,11 @@ struct CustomButtonView: View {
                 Text(title)
                     .font(.headline)
             }
-            .padding()
+            .padding(.vertical)
+            .frame(maxWidth: .infinity)
             .background(Color("AppColor"))
             .foregroundColor(.white)
-            .cornerRadius(10)
+            .cornerRadius(12)
         }
     }
 }

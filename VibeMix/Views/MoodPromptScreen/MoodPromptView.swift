@@ -38,7 +38,6 @@ struct MoodPromptView: View {
                     }
                     .padding(.horizontal, 8)
                 }
-                .padding(.horizontal, 16)
                 
                 Spacer()
                 
@@ -51,6 +50,7 @@ struct MoodPromptView: View {
                 
                 Spacer()
             }
+            .padding(.horizontal, 16)
             .navigationTitle("New Playlist")
             .navigationDestination(item: $navigateToMood) { mood in
                 PlaylistView(mood: mood)

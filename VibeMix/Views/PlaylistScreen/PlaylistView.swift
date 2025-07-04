@@ -193,10 +193,10 @@ struct PlaylistViewButtons: View {
     var saveAction: () -> Void
     
     var body: some View {
-        HStack {
-            CustomButtonView(imageName: "gobackward", title: "Reshuffle", action: { reshuffleAction() })
-            
-            CustomButtonView(imageName: "square.and.arrow.down", title: "Save", action: { saveAction() })
+        HStack(spacing: 16) {
+            CustomButtonView(imageName: "gobackward", title: "Reshuffle", action: reshuffleAction)
+
+            CustomButtonView(imageName: "square.and.arrow.down", title: "Save", action: saveAction)
         }
         .padding(.horizontal, 40)
         .padding(.bottom)
