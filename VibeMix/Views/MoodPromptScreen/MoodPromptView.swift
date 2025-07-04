@@ -20,7 +20,7 @@ struct MoodPromptView: View {
             VStack {
                 Spacer()
                 
-                Text("How are you feeling?")
+                Text("What's the vibe?")
                     .font(.title)
                     .fontWeight(.semibold)
                 
