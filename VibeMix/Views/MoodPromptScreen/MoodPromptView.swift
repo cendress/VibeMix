@@ -9,6 +9,7 @@ import SwiftUI
 
 struct MoodPromptView: View {
     @State private var selectedMood: MoodOption? = nil
+    @State private var navigateToMood: MoodOption? = nil
     
     let columns = [
         GridItem(.flexible()),
@@ -41,34 +42,21 @@ struct MoodPromptView: View {
                 
                 Spacer()
                 
-                // Navigate by updating selectedMood (triggers navigationDestination)
-                Button(action: {}) {
-                    NavigationLink(value: selectedMood) {
-                        HStack {
-                            Image(systemName: "music.note.list")
-                            Text("Find My Vibe")
-                                .font(.headline)
-                        }
-                        .padding()
-                        .background(Color("AppColor"))
-                        .foregroundColor(.white)
-                        .cornerRadius(10)
+                CustomButtonView(imageName: "music.note.list", title: "Find My Vibe") {
+                    if let selected = selectedMood {
+                        navigateToMood = selected
                     }
-                    .disabled(selectedMood == nil)
                 }
+                    .disabled(selectedMood == nil)
                 
                 Spacer()
             }
             .navigationTitle("New Playlist")
-            .navigationDestination(for: MoodOption.self) { mood in
+            .navigationDestination(item: $navigateToMood) { mood in
                 PlaylistView(mood: mood)
             }
         }
     }
-}
-
-#Preview {
-    MoodPromptView()
 }
 
 #Preview {

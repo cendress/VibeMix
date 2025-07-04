@@ -194,29 +194,9 @@ struct PlaylistViewButtons: View {
     
     var body: some View {
         HStack {
-            Button(action: reshuffleAction) {
-                HStack {
-                    Image(systemName: "gobackward")
-                    Text("Reshuffle")
-                }
-                .frame(maxWidth: .infinity)
-                .padding(15)
-                .background(Color("AppColor"))
-                .foregroundColor(.white)
-                .cornerRadius(10)
-            }
+            CustomButtonView(imageName: "gobackward", title: "Reshuffle", action: { reshuffleAction() })
             
-            Button(action: saveAction)  {
-                HStack {
-                    Image(systemName: "square.and.arrow.down")
-                    Text("Save")
-                }
-                .frame(maxWidth: .infinity)
-                .padding(15)
-                .background(Color("AppColor"))
-                .foregroundColor(.white)
-                .cornerRadius(10)
-            }
+            CustomButtonView(imageName: "square.and.arrow.down", title: "Save", action: { saveAction() })
         }
         .padding(.horizontal, 40)
         .padding(.bottom)

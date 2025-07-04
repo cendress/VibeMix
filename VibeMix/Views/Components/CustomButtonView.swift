@@ -8,11 +8,29 @@
 import SwiftUI
 
 struct CustomButtonView: View {
+    let imageName: String
+    let title: String
+    let action: () -> Void
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button(action: {
+            UIImpactFeedbackGenerator(style: .medium).impactOccurred()
+            action()
+        }) {
+            HStack {
+                Image(systemName: imageName)
+                
+                Text(title)
+                    .font(.headline)
+            }
+            .padding()
+            .background(Color("AppColor"))
+            .foregroundColor(.white)
+            .cornerRadius(10)
+        }
     }
 }
 
 #Preview {
-    CustomButtonView()
+    CustomButtonView(imageName: "music.note.list", title: "Find My Vibe", action: {})
 }
