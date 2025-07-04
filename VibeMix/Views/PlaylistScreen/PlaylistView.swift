@@ -67,7 +67,7 @@ struct PlaylistView: View {
                 }
             }
             
-            PlaylistViewButtons(reshuffleAction: fetchSongs, saveAction: {
+            PlaylistButtonsView(reshuffleAction: fetchSongs, saveAction: {
                 self.showingNameSheet = true
             })
         }
@@ -185,20 +185,5 @@ struct PlaylistView: View {
                 print("Playback failed.")
             }
         }
-    }
-}
-
-struct PlaylistViewButtons: View {
-    var reshuffleAction: () -> Void
-    var saveAction: () -> Void
-    
-    var body: some View {
-        HStack(spacing: 16) {
-            CustomButtonView(imageName: "gobackward", title: "Reshuffle", action: reshuffleAction)
-
-            CustomButtonView(imageName: "square.and.arrow.down", title: "Save", action: saveAction)
-        }
-        .padding(.horizontal, 40)
-        .padding(.bottom)
     }
 }

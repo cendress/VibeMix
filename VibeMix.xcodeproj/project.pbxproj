@@ -12,6 +12,7 @@
 		9D4E76182E173BDC005AB4C2 /* MoodOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4E76172E173BDC005AB4C2 /* MoodOption.swift */; };
 		9D4E761D2E174211005AB4C2 /* MoodOptionButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4E761C2E174211005AB4C2 /* MoodOptionButtonView.swift */; };
 		9D4E76372E1864AE005AB4C2 /* CustomButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4E76362E1864AE005AB4C2 /* CustomButtonView.swift */; };
+		9D4E76392E186CF8005AB4C2 /* PlaylistButtonsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4E76382E186CF8005AB4C2 /* PlaylistButtonsView.swift */; };
 		9DC98F3F2BAF0581006FA21F /* VibeMixApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC98F3E2BAF0581006FA21F /* VibeMixApp.swift */; };
 		9DC98F412BAF0581006FA21F /* TabBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC98F402BAF0581006FA21F /* TabBarView.swift */; };
 		9DC98F432BAF0584006FA21F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9DC98F422BAF0584006FA21F /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 		9D4E76172E173BDC005AB4C2 /* MoodOption.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodOption.swift; sourceTree = "<group>"; };
 		9D4E761C2E174211005AB4C2 /* MoodOptionButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoodOptionButtonView.swift; sourceTree = "<group>"; };
 		9D4E76362E1864AE005AB4C2 /* CustomButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButtonView.swift; sourceTree = "<group>"; };
+		9D4E76382E186CF8005AB4C2 /* PlaylistButtonsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaylistButtonsView.swift; sourceTree = "<group>"; };
 		9DC98F3B2BAF0581006FA21F /* VibeMix.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VibeMix.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9DC98F3E2BAF0581006FA21F /* VibeMixApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VibeMixApp.swift; sourceTree = "<group>"; };
 		9DC98F402BAF0581006FA21F /* TabBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarView.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 		9D4E761A2E17401C005AB4C2 /* PlaylistScreen */ = {
 			isa = PBXGroup;
 			children = (
+				9D4E76382E186CF8005AB4C2 /* PlaylistButtonsView.swift */,
 				9DC98F532BAF14D1006FA21F /* PlaylistView.swift */,
 			);
 			path = PlaylistScreen;
@@ -282,6 +285,7 @@
 				9DC98F412BAF0581006FA21F /* TabBarView.swift in Sources */,
 				9DC98F3F2BAF0581006FA21F /* VibeMixApp.swift in Sources */,
 				9D15B4112BDE873000288CED /* PlaylistRowView.swift in Sources */,
+				9D4E76392E186CF8005AB4C2 /* PlaylistButtonsView.swift in Sources */,
 				9D48CC192BAF7F8200CEF85F /* SpotifyAuthService.swift in Sources */,
 				9DC98F5F2BAF32C8006FA21F /* MusicService.swift in Sources */,
 				9DC98F522BAF1001006FA21F /* MoodPromptView.swift in Sources */,
