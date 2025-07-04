@@ -28,6 +28,11 @@ struct CustomButtonView: View {
             .background(Color("AppColor"))
             .foregroundColor(.white)
             .cornerRadius(12)
+            .overlay(
+                RoundedRectangle(cornerRadius: 12)
+                    .stroke(Color.primary, lineWidth: 1)
+            )
+            .shadow(radius: 1)
         }
     }
 }
